@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".UI.QRBarcode"></activity>
         <activity android:name=".UI.PopUp" />
+        <activity android:name=".Model.ControlLogin"/>
         <activity android:name=".UI.LihatLaporan" />
         <activity android:name=".UI.CatatPembelian" />
         <activity android:name=".UI.HomeDashboard" />

@@ -4,17 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/SplashScreen.java
-import com.example.rusmart.R;
-
-public class SplashScreen extends AppCompatActivity {
-=======
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rusmart.Model.ControlLogin;
+import com.example.rusmart.R;
 
-public class MainActivity extends AppCompatActivity {
->>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/MainActivity.java
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +22,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/SplashScreen.java
                 Intent i = new Intent(SplashScreen.this, Login.class);
                 startActivity(i);
-=======
-                Intent intent = new Intent(MainActivity.this, ControlLogin.class);
+
+                Intent intent = new Intent(SplashScreen.this, ControlLogin.class);
                 startActivity(intent);
->>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/MainActivity.java
                 finish();
 
             }

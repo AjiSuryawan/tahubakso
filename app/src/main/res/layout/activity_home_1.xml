@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".UI.CatatPembelian"
     android:orientation="vertical">
 
@@ -77,13 +77,22 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvdatapembelian"
         android:layout_width="356dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+</ScrollView>
+    </LinearLayout>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -114,6 +123,6 @@
         android:verticalScrollbarPosition="defaultPosition" />
     </LinearLayout>
 
-
 </LinearLayout>
+
 
