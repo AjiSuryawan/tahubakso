@@ -43,6 +43,16 @@
                     android:maxLines="3"
                     android:text="Deskripsi Produk"
                     android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/txtsatuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="Deskripsi Produk"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textview_cost_item"

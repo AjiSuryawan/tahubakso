@@ -3,6 +3,7 @@ package com.example.rusmart.Model;
 public class ModelBarang {
     private String id,namabarang;
     private int jumlah=0;
+    private int hargabarang=0;
 
     public String getId() {
         return id;
@@ -30,5 +31,13 @@ public class ModelBarang {
 
     public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
+    }
+
+    public int getHargabarang() {
+        return hargabarang;
+    }
+
+    public void setHargabarang(int hargabarang) {
+        this.hargabarang = hargabarang;
     }
 }

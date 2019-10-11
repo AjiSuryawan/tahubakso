@@ -2,6 +2,7 @@ package com.example.rusmart.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,10 @@ public class adapter_list_item_barang extends RecyclerView.Adapter<adapter_list_
         final ModelBarang data_item = arrayList.get(position);
         holder.textview_item_spa.setText(data_item.getNamabarang());
         holder.textview_description_item.setText("jumlah beli : "+data_item.getJumlah()+"");
-        holder.textview_cost_item.setText("kode barang : "+data_item.getId());
+        holder.txtsatuan.setText("harga satuan : "+data_item.getHargabarang()+"");
+        //holder.textview_cost_item.setText("kode barang : "+data_item.getId());
+        Log.d("kalian", "onBindViewHolder: "+(data_item.getHargabarang()*data_item.getJumlah()));
+        holder.textview_cost_item.setText("subtotal : "+(data_item.getHargabarang()*data_item.getJumlah()));
 
     }
 
@@ -46,13 +50,14 @@ public class adapter_list_item_barang extends RecyclerView.Adapter<adapter_list_
 
     public class Holder extends RecyclerView.ViewHolder {
 
-        private TextView textview_item_spa,textview_description_item,textview_cost_item;
+        private TextView textview_item_spa,textview_description_item,textview_cost_item,txtsatuan;
 
         public Holder(View itemView) {
             super(itemView);
             textview_item_spa = (TextView) itemView.findViewById(R.id.textview_name_item);
             textview_description_item = (TextView)itemView.findViewById(R.id.textview_description_item);
             textview_cost_item = (TextView)itemView.findViewById(R.id.textview_cost_item);
+            txtsatuan = (TextView)itemView.findViewById(R.id.txtsatuan);
 
         }
     }

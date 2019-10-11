@@ -40,6 +40,7 @@ public class CatatPembelian extends AppCompatActivity {
 
     ImageView date;
     TextView show;
+    TextView txttotalbayar;
     Button btnsave;
     private FloatingActionButton fab;
     Spinner spinnerguru;
@@ -48,6 +49,8 @@ public class CatatPembelian extends AppCompatActivity {
     ArrayList<ModelBarang> datalistbarang;
     RecyclerView rvdatapembelian;
     private adapter_list_item_barang adapter;
+    int totalbayar=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,7 @@ public class CatatPembelian extends AppCompatActivity {
         datalistbarang=new ArrayList<>();
         adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang);
         spinnerguru=findViewById(R.id.spinnerguru);
+        txttotalbayar=findViewById(R.id.txttotalbayar);
         rvdatapembelian=findViewById(R.id.rvdatapembelian);
         progressBar = new ProgressDialog(CatatPembelian.this);
 
@@ -200,14 +204,19 @@ public class CatatPembelian extends AppCompatActivity {
             String namaBarang = data.getStringExtra("namaBarang");
             String kodeBarang = data.getStringExtra("kodeBarang");
             String jumlah = data.getStringExtra("jumlah");
+            String hargabarang = data.getStringExtra("hargabarang");
             ModelBarang barang =new ModelBarang();
+            totalbayar+=(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang));
+            Log.d("bayaran", "onActivityResult: "+totalbayar);
             barang.setId(kodeBarang);
             barang.setNamabarang(namaBarang);
             barang.setJumlah(Integer.parseInt(jumlah));
+            barang.setHargabarang(Integer.parseInt(hargabarang));
             datalistbarang.add(barang);
             rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvdatapembelian.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+            txttotalbayar.setText(totalbayar+"");
         }
     }
 }

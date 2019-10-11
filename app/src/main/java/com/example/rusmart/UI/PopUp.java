@@ -67,6 +67,7 @@ public class PopUp extends AppCompatActivity {
                 intent.putExtra("namaBarang",datalist.get(0).getNamabarang());
                 intent.putExtra("kodeBarang",datalist.get(0).getId());
                 intent.putExtra("jumlah",jumlah.getText().toString());
+                intent.putExtra("hargabarang",datalist.get(0).getHargabarang()+"");
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -105,6 +106,7 @@ public class PopUp extends AppCompatActivity {
                                         JSONObject json = result.getJSONObject(i);
                                         model.setId(json.getString("kodebarang"));
                                         model.setNamabarang(json.getString("namabarang"));
+                                        model.setHargabarang(Integer.parseInt(json.getString("hargabarang")));
                                         datalist.add(model);
                                     }
                                     txtnamabarang.setText(datalist.get(0).getNamabarang());

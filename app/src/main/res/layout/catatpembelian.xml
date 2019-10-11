@@ -105,6 +105,15 @@
                 android:layout_marginRight="35dp"
                 app:srcCompat="@mipmap/plus" />
 
+            <TextView
+                android:id="@+id/txttotalbayar"
+                android:textSize="20sp"
+                android:layout_margin="20dp"
+                android:text="total bayar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
