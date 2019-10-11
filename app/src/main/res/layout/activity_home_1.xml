@@ -41,6 +41,7 @@
             android:layout_width="325dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:entries="@array/Nama_Guru"
             android:outlineAmbientShadowColor="@color/colorAccent" />
     </androidx.cardview.widget.CardView>
 
