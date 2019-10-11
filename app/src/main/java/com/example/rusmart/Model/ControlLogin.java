@@ -8,8 +8,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.rusmart.HomeDashboard;
-import com.example.rusmart.Login;
+import com.example.rusmart.UI.HomeDashboard;
+import com.example.rusmart.UI.Login;
 
 public class ControlLogin extends AppCompatActivity {
 
