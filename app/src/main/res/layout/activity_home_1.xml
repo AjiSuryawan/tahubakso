@@ -1,128 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".UI.CatatPembelian"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.CatatPembelian">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar1"
         android:background="@color/colorPrimaryDark"
         android:theme="@style/ActionBarThemeOverlay">
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pilih nama :"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:textColor="@color/hitam"/>
+    <ScrollView
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="325dp"
-        android:layout_height="37dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:elevation="10sp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:padding="5dp"
-        app:cardCornerRadius="10dp">
-
-        <Spinner
-            android:id="@+id/spinnerguru"
-            android:layout_width="325dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:entries="@array/Nama_Guru"
-            android:outlineAmbientShadowColor="@color/colorAccent" />
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tanggal :"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="33dp"
-        android:textColor="@color/hitam"/>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:src="@mipmap/calendar"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="17dp"
-        android:id="@+id/date"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Tanggal"
-        android:textSize="16dp"
-        android:layout_marginTop="24dp"
-        android:id="@+id/show"/>
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/date"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="17dp"
+                    android:src="@mipmap/calendar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:hint="Tanggal"
+                    android:textSize="16dp" />
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvdatapembelian"
-        android:layout_width="356dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-</ScrollView>
-    </LinearLayout>
+            </LinearLayout>
 
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="35dp"
-        app:srcCompat="@mipmap/plus"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:text="Pilih nama :"
+                android:textColor="@color/hitam" />
 
-    <Button
-        android:layout_margin="10dp"
-        android:id="@+id/btnsave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorPrimary"
-        android:text="save"
-        android:textColor="@color/putih"
-        android:verticalScrollbarPosition="defaultPosition" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:text="Tanggal :"
+                android:textColor="@color/hitam" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="325dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:elevation="10sp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="5dp"
+                app:cardCornerRadius="10dp">
+
+                <Spinner
+                    android:id="@+id/spinnerguru"
+                    android:layout_width="325dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:entries="@array/Nama_Guru"
+                    android:outlineAmbientShadowColor="@color/colorAccent" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvdatapembelian"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="35dp"
+                app:srcCompat="@mipmap/plus" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnsave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorPrimary"
+                    android:text="save"
+                    android:textColor="@color/putih"
+                    android:verticalScrollbarPosition="defaultPosition" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
-
-

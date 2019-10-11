@@ -81,7 +81,6 @@ public class Login extends AppCompatActivity {
                                         if (progressBar.isShowing()) {
                                             progressBar.dismiss();
                                         }
-                                        startActivity(new Intent(getApplicationContext(), HomeDashboard.class));
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_LONG).show();
 
