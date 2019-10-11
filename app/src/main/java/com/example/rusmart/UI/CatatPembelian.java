@@ -1,11 +1,14 @@
 package com.example.rusmart.UI;
 
+<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/CatatPembelian.java
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+=======
+>>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/Home_1.java
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,11 +22,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.rusmart.Model.ModelBarang;
 import com.example.rusmart.Model.ModelGuru;
 import com.example.rusmart.R;
 import com.example.rusmart.adapter.adapter_list_item_barang;
@@ -67,7 +72,11 @@ public class CatatPembelian extends AppCompatActivity {
         progressBar.setMessage("Please wait");
         progressBar.show();
         progressBar.setCancelable(false);
+<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/CatatPembelian.java
         AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
+=======
+        AndroidNetworking.get("http://192.168.6.191/rusmart/getguru.php")
+>>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/Home_1.java
                 //.addBodyParameter("kodebarang",result)
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)

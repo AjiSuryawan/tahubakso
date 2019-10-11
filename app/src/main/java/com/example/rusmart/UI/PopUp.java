@@ -1,8 +1,5 @@
 package com.example.rusmart.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.rusmart.Model.ModelBarang;
+<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/PopUp.java
 import com.example.rusmart.R;
+=======
+>>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/PopUp.java
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,12 +83,17 @@ public class PopUp extends AppCompatActivity {
             if (resultCode == PopUp.RESULT_OK) {
                 System.out.println("lala1");
                 String result = data.getStringExtra("text");
+
                 progressBar = new ProgressDialog(PopUp.this);
 
                 progressBar.setMessage("Please wait");
                 progressBar.show();
                 progressBar.setCancelable(false);
+<<<<<<< HEAD:app/src/main/java/com/example/rusmart/UI/PopUp.java
                 AndroidNetworking.post(baseURL.baseurl+"rusmart/getbarang.php")
+=======
+                AndroidNetworking.post("http://192.168.6.191/rusmart/getbarang.php")
+>>>>>>> 92c821487245f06c1b1f311ee768b6025588ea0f:app/src/main/java/com/example/rusmart/PopUp.java
                         .addBodyParameter("kodebarang",result)
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
