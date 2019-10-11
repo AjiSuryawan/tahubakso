@@ -20,12 +20,50 @@
     <ScrollView
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:text="Pilih nama :"
+                android:textColor="@color/hitam" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="325dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:elevation="10sp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="5dp"
+                app:cardCornerRadius="10dp">
+
+                <Spinner
+                    android:id="@+id/spinnerguru"
+                    android:layout_width="325dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:entries="@array/Nama_Guru"
+                    android:outlineAmbientShadowColor="@color/colorAccent" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:text="Tanggal :"
+                android:textColor="@color/hitam" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,46 +87,6 @@
                     android:textSize="16dp" />
 
             </LinearLayout>
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="25dp"
-                android:text="Pilih nama :"
-                android:textColor="@color/hitam" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="33dp"
-                android:text="Tanggal :"
-                android:textColor="@color/hitam" />
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="325dp"
-                android:layout_height="37dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:clickable="true"
-                android:elevation="10sp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="5dp"
-                app:cardCornerRadius="10dp">
-
-                <Spinner
-                    android:id="@+id/spinnerguru"
-                    android:layout_width="325dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:entries="@array/Nama_Guru"
-                    android:outlineAmbientShadowColor="@color/colorAccent" />
-            </androidx.cardview.widget.CardView>
 
 
             <androidx.recyclerview.widget.RecyclerView
