@@ -68,24 +68,35 @@ public class CatatPembelian extends AppCompatActivity {
     String posisiguru;
     Date datesave;
     DateFormat df2;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catatpembelian);
-
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catat Tagihan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         datalist= new RealmList<>();
         datalistbarang=new ArrayList<>();
-
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
         realm = Realm.getInstance(configuration);
-
         realmHelper = new RealmHelper(realm);
+        adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang, new adapter_list_item_barang.CustgroupListener() {
+            @Override
+            public void onClickListener(int position) {
+                Intent in =new Intent(getApplicationContext(),DeleteOrEdit.class);
+                in.putExtra("pos",position);
+                startActivityForResult(in,101);
+            }
 
-        adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang);
+            @Override
+            public void onInfoClickListener(int position) {
+
+            }
+        });
         spinnerguru=findViewById(R.id.spinnerguru);
         txttotalbayar=findViewById(R.id.txttotalbayar);
         rvdatapembelian=findViewById(R.id.rvdatapembelian);
@@ -93,10 +104,9 @@ public class CatatPembelian extends AppCompatActivity {
         progressBar.setMessage("Please wait");
         progressBar.show();
         progressBar.setCancelable(false);
-
-
         datalist.clear();
         datalist.addAll(realmHelper.getAllMahasiswa());
+
         if (datalist.size() == 0){
             loadapi();
         }else{
@@ -123,7 +133,6 @@ public class CatatPembelian extends AppCompatActivity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
                 final DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -214,85 +223,65 @@ public class CatatPembelian extends AppCompatActivity {
                         }
                     }
                 };
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setMessage("Apakah anda yakin ingin simpan data?").setPositiveButton("Ya", dialog)
                         .setNegativeButton("Tidak", dialog).show();
             }
         });
-
         Calendar cal = Calendar.getInstance();
         final int year = cal.get(Calendar.YEAR);
         final int month = cal.get(Calendar.MONTH);
         final int day = cal.get(Calendar.DAY_OF_MONTH);
-
         spinnerguru.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 posisiguru=datalist.get(i).getCodeguru();
                 Toast.makeText(getApplicationContext(),""+posisiguru,Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         CatatPembelian.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
                         month = month + 1;
                         String datef = day + "/" + month + "/" + year;
                         show.setText(datef);
-
                     }
                 }, year, month, day);
                 datePickerDialog.show();
-
             }
         });
-
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         CatatPembelian.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
                         month = month + 1;
                         String datef = day + "/" + month + "/" + year;
                         show.setText(datef);
-
                     }
                 }, year, month, day);
                 datePickerDialog.show();
-
             }
         });
-
-
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent i = new Intent(CatatPembelian.this, PopUp.class);
                 startActivityForResult(i, 100);
-
             }
         });
 
     }
-
     private void loadapi() {
         AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
                 //.addBodyParameter("kodebarang",result)
@@ -351,7 +340,6 @@ public class CatatPembelian extends AppCompatActivity {
                     }
                 });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -372,6 +360,19 @@ public class CatatPembelian extends AppCompatActivity {
             rvdatapembelian.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             txttotalbayar.setText(totalbayar+"");
+        }else if (requestCode == 101 && resultCode == Activity.RESULT_OK){
+            String aksi = data.getStringExtra("aksi");
+            if(aksi.equalsIgnoreCase("edit")){
+
+            }else if (aksi.equalsIgnoreCase("delete")){
+                String posku=data.getStringExtra("pos");
+                int tmpposu= Integer.parseInt(posku);
+                totalbayar-=datalistbarang.get(tmpposu).getHargabarang()*datalistbarang.get(tmpposu).getJumlah();
+                txttotalbayar.setText(totalbayar+"");
+                datalistbarang.remove(posku);
+                //update rv
+            }
+
         }
     }
 }
