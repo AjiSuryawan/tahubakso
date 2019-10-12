@@ -1,5 +1,6 @@
 package com.example.rusmart.UI;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -132,9 +135,29 @@ public class CatatPembelian extends AppCompatActivity {
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CatatPembelian.this,HomeDashboard.class);
-                startActivity(intent);
+            public void onClick(final View view) {
+
+                final DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        switch (i) {
+
+                            case DialogInterface.BUTTON_POSITIVE:
+                                Intent intent = new Intent(CatatPembelian.this, HomeDashboard.class);
+                                startActivity(intent);
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                Toast.makeText(getApplicationContext(), "Data gagal di simpan", Toast.LENGTH_LONG).show();
+                                break;
+                        }
+
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Apakah anda yakin ingin simpan data?").setPositiveButton("Ya", dialog)
+                        .setNegativeButton("Tidak", dialog).show();
             }
         });
 
