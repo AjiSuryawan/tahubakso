@@ -12,17 +12,24 @@ import android.widget.ImageView;
 
 import com.example.rusmart.R;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 public class HomeDashboard extends AppCompatActivity {
 
     CardView cdCatatTagihan;
     CardView cdLihatTagihan;
-
+    Realm realm;
     ImageView ivlogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_dashboard);
+
+        Realm.init(HomeDashboard.this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
 
         cdCatatTagihan = findViewById(R.id.cdCatatTagihan);
         cdLihatTagihan = findViewById(R.id.cdLihatTagihan);

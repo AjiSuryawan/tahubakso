@@ -26,9 +26,10 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.rusmart.Model.GuruModel;
 import com.example.rusmart.Model.ModelBarang;
-import com.example.rusmart.Model.ModelGuru;
 import com.example.rusmart.R;
+import com.example.rusmart.RealmHelper;
 import com.example.rusmart.adapter.adapter_list_item_barang;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -38,6 +39,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmList;
 
 public class CatatPembelian extends AppCompatActivity {
 
@@ -48,11 +54,19 @@ public class CatatPembelian extends AppCompatActivity {
     private FloatingActionButton fab;
     Spinner spinnerguru;
     private ProgressDialog progressBar;
-    ArrayList<ModelGuru> datalist;
+    RealmList<GuruModel> datalist;
     ArrayList<ModelBarang> datalistbarang;
     RecyclerView rvdatapembelian;
     private adapter_list_item_barang adapter;
     int totalbayar=0;
+
+
+    Realm realm;
+    RealmHelper realmHelper;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,70 +77,48 @@ public class CatatPembelian extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catat Tagihan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        datalist=new ArrayList<>();
+        datalist= new RealmList<>();
         datalistbarang=new ArrayList<>();
+
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
+
+        realmHelper = new RealmHelper(realm);
+
         adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang);
         spinnerguru=findViewById(R.id.spinnerguru);
         txttotalbayar=findViewById(R.id.txttotalbayar);
         rvdatapembelian=findViewById(R.id.rvdatapembelian);
         progressBar = new ProgressDialog(CatatPembelian.this);
-
         progressBar.setMessage("Please wait");
         progressBar.show();
         progressBar.setCancelable(false);
-        AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
-                //.addBodyParameter("kodebarang",result)
-                .setTag("test")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            System.out.println("lala2");
-                            Log.d("hasil", "onResponse: "+response.toString());
-                            JSONArray result = response.getJSONArray("result");
-                            for (int i = 0; i <result.length() ; i++) {
-                                ModelGuru model = new ModelGuru();
-                                JSONObject json = result.getJSONObject(i);
-                                model.setKodeGuru(json.getString("kodeGuru"));
-                                model.setNamaGuru(json.getString("namaGuru"));
-                                datalist.add(model);
-                            }
-                            String[] namaguru=new String[datalist.size()];
-                            for (int i = 0; i <datalist.size() ; i++) {
-                                namaguru[i]=datalist.get(i).getNamaGuru();
-                            }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                    CatatPembelian.this,
-                                    android.R.layout.simple_spinner_item,
-                                    namaguru
-                            );
-                            spinnerguru.setAdapter(adapter);
-                            if (progressBar.isShowing()){
-                                progressBar.dismiss();
-                            }
-                        } catch (JSONException e) {
-                            if (progressBar.isShowing()){
-                                progressBar.dismiss();
-                            }
-                            System.out.println("lala3");
-                            e.printStackTrace();
-                        }
-                    }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        if (progressBar.isShowing()){
-                            progressBar.dismiss();
-                        }
-                        System.out.println("lala4");
-                        Log.d("errorku", "onError: "+anError.getErrorCode());
-                        Log.d("errorku", "onError: "+anError.getErrorBody());
-                        Log.d("errorku", "onError: "+anError.getErrorDetail());
 
-                    }
-                });
+        datalist.clear();
+        datalist.addAll(realmHelper.getAllMahasiswa());
+        if (datalist.size() == 0){
+            loadapi();
+        }else{
+            datalist.clear();
+            datalist.addAll(realmHelper.getAllMahasiswa());
+            String[] namaguru=new String[datalist.size()];
+            for (int i = 0; i <datalist.size() ; i++) {
+                namaguru[i]=datalist.get(i).getNama();
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    CatatPembelian.this,
+                    android.R.layout.simple_spinner_item,
+                    namaguru
+            );
+            spinnerguru.setAdapter(adapter);
+            if (progressBar.isShowing()){
+                progressBar.dismiss();
+            }
+        }
+
+
+
 
 
         date = findViewById(R.id.date);
@@ -218,6 +210,67 @@ public class CatatPembelian extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadapi() {
+        AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
+                //.addBodyParameter("kodebarang",result)
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("lala2");
+                            Log.d("hasil", "onResponse: "+response.toString());
+                            JSONArray result = response.getJSONArray("result");
+                            for (int i = 0; i <result.length() ; i++) {
+                                GuruModel model = new GuruModel();
+                                JSONObject json = result.getJSONObject(i);
+                                model.setCodeguru(json.getString("kodeGuru"));
+                                model.setNama(json.getString("namaGuru"));
+                                datalist.add(model);
+                                realmHelper = new RealmHelper(realm);
+                                realmHelper.save(model);
+                            }
+
+
+
+                            String[] namaguru=new String[datalist.size()];
+                            for (int i = 0; i <datalist.size() ; i++) {
+                                namaguru[i]=datalist.get(i).getNama();
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                    CatatPembelian.this,
+                                    android.R.layout.simple_spinner_item,
+                                    namaguru
+                            );
+                            spinnerguru.setAdapter(adapter);
+                            if (progressBar.isShowing()){
+                                progressBar.dismiss();
+                            }
+                        } catch (JSONException e) {
+                            if (progressBar.isShowing()){
+                                progressBar.dismiss();
+                            }
+                            System.out.println("lala3");
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        if (progressBar.isShowing()){
+                            progressBar.dismiss();
+                        }
+                        System.out.println("lala4");
+                        Log.d("errorku", "onError: "+anError.getErrorCode());
+                        Log.d("errorku", "onError: "+anError.getErrorBody());
+                        Log.d("errorku", "onError: "+anError.getErrorDetail());
+
+                    }
+                });
     }
 
     @Override
