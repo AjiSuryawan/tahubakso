@@ -8,7 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".UI.DeleteOrEdit">
 
+    <EditText
+        android:inputType="number"
+        android:hint="input jumlah"
+        android:id="@+id/txtjumlahedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

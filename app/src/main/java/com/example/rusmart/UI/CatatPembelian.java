@@ -89,6 +89,9 @@ public class CatatPembelian extends AppCompatActivity {
             public void onClickListener(int position) {
                 Intent in =new Intent(getApplicationContext(),DeleteOrEdit.class);
                 in.putExtra("pos",position);
+                in.putExtra("namaBarang",datalistbarang.get(position).getNamabarang());
+                in.putExtra("kodeBarang",datalistbarang.get(position).getId());
+                in.putExtra("hargabarang",datalistbarang.get(position).getHargabarang());
                 startActivityForResult(in,101);
             }
 
@@ -362,14 +365,29 @@ public class CatatPembelian extends AppCompatActivity {
             txttotalbayar.setText(totalbayar+"");
         }else if (requestCode == 101 && resultCode == Activity.RESULT_OK){
             String aksi = data.getStringExtra("aksi");
+            String posku=data.getStringExtra("pos");
+            int tmpposku= Integer.parseInt(posku);
             if(aksi.equalsIgnoreCase("edit")){
-
-            }else if (aksi.equalsIgnoreCase("delete")){
-                String posku=data.getStringExtra("pos");
-                int tmpposu= Integer.parseInt(posku);
-                totalbayar-=(datalistbarang.get(tmpposu).getHargabarang()*datalistbarang.get(tmpposu).getJumlah());
+                totalbayar-=(datalistbarang.get(tmpposku).getHargabarang()*datalistbarang.get(tmpposku).getJumlah());
+                datalistbarang.remove(tmpposku);
+                String namaBarang = data.getStringExtra("namaBarang");
+                String kodeBarang = data.getStringExtra("kodeBarang");
+                String jumlah = data.getStringExtra("jumlah");
+                String hargabarang = data.getStringExtra("hargabarang");
+                ModelBarang barang =new ModelBarang();
+                totalbayar+=(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang));
                 txttotalbayar.setText(totalbayar+"");
-                datalistbarang.remove(tmpposu);
+                Log.d("bayaran", "onActivityResult: "+totalbayar);
+                barang.setId(kodeBarang);
+                barang.setNamabarang(namaBarang);
+                barang.setJumlah(Integer.parseInt(jumlah));
+                barang.setHargabarang(Integer.parseInt(hargabarang));
+                datalistbarang.add(barang);
+                adapter.notifyDataSetChanged();
+            }else if (aksi.equalsIgnoreCase("delete")){
+                totalbayar-=(datalistbarang.get(tmpposku).getHargabarang()*datalistbarang.get(tmpposku).getJumlah());
+                txttotalbayar.setText(totalbayar+"");
+                datalistbarang.remove(tmpposku);
                 //update rv
                 Log.d("jumlahskrg", "onActivityResult: "+datalistbarang.size());
                 adapter.notifyDataSetChanged();
