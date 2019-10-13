@@ -367,10 +367,12 @@ public class CatatPembelian extends AppCompatActivity {
             }else if (aksi.equalsIgnoreCase("delete")){
                 String posku=data.getStringExtra("pos");
                 int tmpposu= Integer.parseInt(posku);
-                totalbayar-=datalistbarang.get(tmpposu).getHargabarang()*datalistbarang.get(tmpposu).getJumlah();
+                totalbayar-=(datalistbarang.get(tmpposu).getHargabarang()*datalistbarang.get(tmpposu).getJumlah());
                 txttotalbayar.setText(totalbayar+"");
-                datalistbarang.remove(posku);
+                datalistbarang.remove(tmpposu);
                 //update rv
+                Log.d("jumlahskrg", "onActivityResult: "+datalistbarang.size());
+                adapter.notifyDataSetChanged();
             }
 
         }
