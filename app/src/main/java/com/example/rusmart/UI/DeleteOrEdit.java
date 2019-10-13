@@ -1,7 +1,9 @@
 package com.example.rusmart.UI;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -47,11 +49,29 @@ public class DeleteOrEdit extends AppCompatActivity {
         btndelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.putExtra("aksi","delete");
-                intent.putExtra("pos", posisi +"");
-                setResult(RESULT_OK,intent);
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(DeleteOrEdit.this);
+                builder.setCancelable(false);
+                builder.setMessage("are you sure wanna delete this item?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent();
+                        intent.putExtra("aksi","delete");
+                        intent.putExtra("pos", posisi +"");
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+                //
+
             }
         });
     }
