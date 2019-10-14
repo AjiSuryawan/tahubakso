@@ -10,15 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UI.DeleteOrEdit"></activity>
         <activity android:name=".UI.LogOut" />
         <activity android:name=".UI.QRBarcode" />
-        <activity android:name=".UI.PopUp"
-            android:parentActivityName=".UI.CatatPembelian"/>
+        <activity
+            android:name=".UI.PopUp"
+            android:parentActivityName=".UI.CatatPembelian" />
         <activity android:name=".Model.ControlLogin" />
-        <activity android:name=".UI.LihatLaporan"
-            android:parentActivityName=".UI.HomeDashboard"/>
-        <activity android:name=".UI.CatatPembelian"
-            android:parentActivityName=".UI.HomeDashboard"/>
+        <activity
+            android:name=".UI.LihatLaporan"
+            android:parentActivityName=".UI.HomeDashboard" />
+        <activity
+            android:name=".UI.CatatPembelian"
+            android:parentActivityName=".UI.HomeDashboard" />
         <activity android:name=".UI.HomeDashboard" />
         <activity android:name=".UI.Login" />
         <activity android:name=".UI.SplashScreen">
@@ -29,11 +33,11 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.rusmart.Model.ModelBarang;
 import com.example.rusmart.R;
+import com.example.rusmart.UI.DeleteOrEdit;
 
 import java.util.List;
 
@@ -19,10 +21,12 @@ public class adapter_list_item_barang extends RecyclerView.Adapter<adapter_list_
 
     private List<ModelBarang> arrayList;
     private Context context;
+    private CustgroupListener listener;
 
-    public adapter_list_item_barang(Context context, List<ModelBarang> arrayList) {
+    public adapter_list_item_barang(Context context, List<ModelBarang> arrayList , CustgroupListener listener) {
         this.context = context;
         this.arrayList = arrayList;
+        this.listener=listener;
     }
 
     @Override
@@ -40,7 +44,6 @@ public class adapter_list_item_barang extends RecyclerView.Adapter<adapter_list_
         //holder.textview_cost_item.setText("kode barang : "+data_item.getId());
         Log.d("kalian", "onBindViewHolder: "+(data_item.getHargabarang()*data_item.getJumlah()));
         holder.textview_cost_item.setText("subtotal : "+(data_item.getHargabarang()*data_item.getJumlah()));
-
     }
 
     @Override
@@ -49,16 +52,27 @@ public class adapter_list_item_barang extends RecyclerView.Adapter<adapter_list_
     }
 
     public class Holder extends RecyclerView.ViewHolder {
-
         private TextView textview_item_spa,textview_description_item,textview_cost_item,txtsatuan;
-
+        CardView cardku;
         public Holder(View itemView) {
             super(itemView);
             textview_item_spa = (TextView) itemView.findViewById(R.id.textview_name_item);
+            cardku = (CardView) itemView.findViewById(R.id.cardku);
             textview_description_item = (TextView)itemView.findViewById(R.id.textview_description_item);
             textview_cost_item = (TextView)itemView.findViewById(R.id.textview_cost_item);
             txtsatuan = (TextView)itemView.findViewById(R.id.txtsatuan);
-
+            cardku.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onClickListener(getAdapterPosition());
+                }
+            });
         }
     }
+
+    public interface CustgroupListener {
+        void onClickListener(int position);
+        void onInfoClickListener(int position);
+    }
+
 }
