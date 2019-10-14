@@ -64,6 +64,7 @@
 
 
     <LinearLayout
+
         android:layout_margin="20dp"
         android:padding="3dp"
         android:background="@drawable/edit"
