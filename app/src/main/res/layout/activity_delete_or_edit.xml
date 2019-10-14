@@ -27,10 +27,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kode Barang       :    "
+            android:text="Kode Barang  :  "
             android:layout_gravity="center"
             android:textSize="17dp"/>
         <TextView
+            android:id="@+id/tvkodebarang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kode Barang"
@@ -47,10 +48,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Barang      :    "
+            android:text="Nama Barang : "
             android:layout_gravity="center"
             android:textSize="17dp"/>
         <TextView
+            android:id="@+id/tvnamabarang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Barang"
@@ -58,28 +60,11 @@
             android:textSize="17dp"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jumlah Barang   :    "
-            android:layout_gravity="center"
-            android:textSize="17dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kode Barang"
-            android:layout_gravity="center"
-            android:textSize="17dp"/>
-    </LinearLayout>
+
+
 
     <LinearLayout
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         android:padding="3dp"
         android:background="@drawable/edit"
         android:layout_width="350dp"

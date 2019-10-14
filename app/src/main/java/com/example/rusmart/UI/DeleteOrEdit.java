@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.rusmart.R;
 
@@ -18,15 +19,25 @@ public class DeleteOrEdit extends AppCompatActivity {
     String namabarang;
     int hargabarang;
     EditText txtjumlahedit;
+    TextView tvkodebarang;
+    TextView tvnamabarang;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_or_edit);
+
+        tvkodebarang = findViewById(R.id.tvkodebarang);
+        tvnamabarang = findViewById(R.id.tvnamabarang);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             posisi = extras.getInt("pos");
             kodebarang = extras.getString("kodeBarang");
+            tvkodebarang.setText(kodebarang);
             namabarang = extras.getString("namaBarang");
+            tvnamabarang.setText(namabarang);
             hargabarang = extras.getInt("hargabarang");
             // and get whatever type user account id is
         }
