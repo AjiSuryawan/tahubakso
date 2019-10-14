@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rusmart.Model.PrefManager;
@@ -19,6 +20,7 @@ import com.facebook.login.LoginManager;
 public class LogOut extends AppCompatActivity {
 
     Button btnLogOut;
+    TextView namelogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,15 @@ public class LogOut extends AppCompatActivity {
         setContentView(R.layout.activity_log_out);
 
         btnLogOut = findViewById(R.id.btnLogOut);
-
+        namelogout = findViewById(R.id.namelogout);
         SharedPreferences mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
+
+        namelogout.setText(mLogin.getString("username", "missing"));
+
+        if (getSharedPreferences("login", Context.MODE_PRIVATE) != null) {
+
+            namelogout.setText(mLogin.getString("username", "missing"));
+        }
 
 
 
@@ -49,9 +58,6 @@ public class LogOut extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
 
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                Toast.makeText(getApplicationContext(), "Data gagal di simpan", Toast.LENGTH_LONG).show();
-                                break;
                         }
 
                     }

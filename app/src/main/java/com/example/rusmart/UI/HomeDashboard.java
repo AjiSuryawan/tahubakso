@@ -18,9 +18,7 @@ import io.realm.RealmConfiguration;
 public class HomeDashboard extends AppCompatActivity {
 
     CardView cdCatatTagihan;
-    CardView cdLihatTagihan;
     Realm realm;
-    ImageView ivlogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +30,6 @@ public class HomeDashboard extends AppCompatActivity {
         realm = Realm.getInstance(configuration);
 
         cdCatatTagihan = findViewById(R.id.cdCatatTagihan);
-        cdLihatTagihan = findViewById(R.id.cdLihatTagihan);
-        ivlogo = findViewById(R.id.ivlogo);
 
         cdCatatTagihan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,21 +39,6 @@ public class HomeDashboard extends AppCompatActivity {
             }
         });
 
-        cdLihatTagihan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeDashboard.this, LihatLaporan.class);
-                startActivity(intent);
-            }
-        });
-
-        ivlogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeDashboard.this, LogOut.class);
-                startActivity(intent);
-            }
-        });
     }
 
         @Override

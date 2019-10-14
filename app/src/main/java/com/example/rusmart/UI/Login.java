@@ -2,6 +2,7 @@ package com.example.rusmart.UI;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidnetworking.AndroidNetworking;
@@ -49,13 +51,14 @@ public class Login extends AppCompatActivity {
                 progressBar = new ProgressDialog(Login.this);
                 progressBar.setMessage("Please wait");
                 progressBar.show();
-                progressBar.setCancelable(false);user.setUsername(txtusername.getText().toString());
+                progressBar.setCancelable(false);
+                user.setUsername(txtusername.getText().toString());
                 user.setPassword(txtusername.getText().toString());
 
                 mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
-                AndroidNetworking.post(baseURL.baseurl+"rusmart/login.php")
-                        .addBodyParameter("username",txtusername.getText().toString())
-                        .addBodyParameter("password",txtpassword.getText().toString())
+                AndroidNetworking.post(baseURL.baseurl + "rusmart/login.php")
+                        .addBodyParameter("username", txtusername.getText().toString())
+                        .addBodyParameter("password", txtpassword.getText().toString())
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
                         .build()
@@ -85,7 +88,8 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_LONG).show();
 
 
-                                    }} catch (JSONException e){
+                                    }
+                                } catch (JSONException e) {
                                     if (progressBar.isShowing()) {
                                         progressBar.dismiss();
                                     }
@@ -93,7 +97,7 @@ public class Login extends AppCompatActivity {
                                 }
 
 
-                                }
+                            }
 
                             @Override
                             public void onError(ANError anError) {
@@ -107,9 +111,31 @@ public class Login extends AppCompatActivity {
                             }
 
 
-                            });
-                }
+                        });
+            }
 
         });
     }
+
+        @Override
+        public void onBackPressed() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+            builder.setMessage("Do you want to Exit?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
 }
