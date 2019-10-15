@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.rusmart.R;
 
@@ -22,6 +23,8 @@ public class DeleteOrEdit extends AppCompatActivity {
     TextView tvkodebarang;
     TextView tvnamabarang;
 
+    Toolbar toolbardeloredt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,11 @@ public class DeleteOrEdit extends AppCompatActivity {
 
         tvkodebarang = findViewById(R.id.tvkodebarang);
         tvnamabarang = findViewById(R.id.tvnamabarang);
+
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Delete or Edit");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -86,4 +94,5 @@ public class DeleteOrEdit extends AppCompatActivity {
             }
         });
     }
+
 }
