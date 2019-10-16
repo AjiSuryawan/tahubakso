@@ -39,6 +39,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,6 +65,8 @@ public class CatatPembelian extends AppCompatActivity {
     RecyclerView rvdatapembelian;
     private adapter_list_item_barang adapter;
     int totalbayar=0;
+    DecimalFormat kursIndonesia;
+    DecimalFormatSymbols formatRp;
     Realm realm;
     RealmHelper realmHelper;
     String posisiguru;
@@ -79,6 +83,12 @@ public class CatatPembelian extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catat Tagihan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
         datalist= new RealmList<>();
         datalistbarang=new ArrayList<>();
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
@@ -362,7 +372,7 @@ public class CatatPembelian extends AppCompatActivity {
             rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvdatapembelian.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            txttotalbayar.setText(totalbayar+"");
+            txttotalbayar.setText(kursIndonesia.format(totalbayar));
         }else if (requestCode == 101 && resultCode == Activity.RESULT_OK){
             String aksi = data.getStringExtra("aksi");
             String posku=data.getStringExtra("pos");
@@ -376,7 +386,7 @@ public class CatatPembelian extends AppCompatActivity {
                 String hargabarang = data.getStringExtra("hargabarang");
                 ModelBarang barang =new ModelBarang();
                 totalbayar+=(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang));
-                txttotalbayar.setText(totalbayar+"");
+                txttotalbayar.setText(kursIndonesia.format(totalbayar));
                 Log.d("bayaran", "onActivityResult: "+totalbayar);
                 barang.setId(kodeBarang);
                 barang.setNamabarang(namaBarang);
@@ -386,7 +396,7 @@ public class CatatPembelian extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }else if (aksi.equalsIgnoreCase("delete")){
                 totalbayar-=(datalistbarang.get(tmpposku).getHargabarang()*datalistbarang.get(tmpposku).getJumlah());
-                txttotalbayar.setText(totalbayar+"");
+                txttotalbayar.setText(kursIndonesia.format(totalbayar));
                 datalistbarang.remove(tmpposku);
                 //update rv
                 Log.d("jumlahskrg", "onActivityResult: "+datalistbarang.size());

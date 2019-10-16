@@ -122,17 +122,24 @@ public class PopUp extends AppCompatActivity {
                                     System.out.println("lala2");
                                     Log.d("hasil", "onResponse: "+response.toString());
                                     JSONArray result = response.getJSONArray("result");
-                                    for (int i = 0; i <result.length() ; i++) {
-                                        ModelBarang model = new ModelBarang();
-                                        JSONObject json = result.getJSONObject(i);
-                                        model.setId(json.getString("kodebarang"));
-                                        model.setNamabarang(json.getString("namabarang"));
-                                        model.setHargabarang(Integer.parseInt(json.getString("hargabarang")));
-                                        datalist.add(model);
-                                    }
-                                    txtnamabarang.setText(datalist.get(0).getNamabarang());
-                                    if (progressBar.isShowing()){
-                                        progressBar.dismiss();
+                                    if(result.length()>0){
+                                        for (int i = 0; i <result.length() ; i++) {
+                                            ModelBarang model = new ModelBarang();
+                                            JSONObject json = result.getJSONObject(i);
+                                            model.setId(json.getString("kodebarang"));
+                                            model.setNamabarang(json.getString("namabarang"));
+                                            model.setHargabarang(Integer.parseInt(json.getString("hargabarang")));
+                                            datalist.add(model);
+                                        }
+                                        txtnamabarang.setText(datalist.get(0).getNamabarang());
+                                        if (progressBar.isShowing()){
+                                            progressBar.dismiss();
+                                        }
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),"data tidak ditemukan",Toast.LENGTH_LONG).show();
+                                        if (progressBar.isShowing()){
+                                            progressBar.dismiss();
+                                        }
                                     }
                                 } catch (JSONException e) {
                                     System.out.println("lala3");
