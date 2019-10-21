@@ -69,7 +69,27 @@ public class CatatPembelian extends AppCompatActivity {
     Date datesave;
     DateFormat df2;
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +187,6 @@ public class CatatPembelian extends AppCompatActivity {
                                                     JSONObject result = response.getJSONObject("hasil");
                                                     boolean responku=result.getBoolean("respon");
                                                     if (responku){
-                                                        Toast.makeText(getApplicationContext(),"sukses input",Toast.LENGTH_LONG).show();
                                                         //
                                                         for (int j = 0; j <datalistbarang.size() ; j++) {
                                                             AndroidNetworking.post(baseURL.baseurl+"rusmart/insertnotadetail.php")
@@ -239,7 +258,7 @@ public class CatatPembelian extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 posisiguru=datalist.get(i).getCodeguru();
-                Toast.makeText(getApplicationContext(),""+posisiguru,Toast.LENGTH_LONG).show();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

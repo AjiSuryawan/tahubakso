@@ -82,7 +82,6 @@ public class PopUp extends AppCompatActivity {
 
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                Toast.makeText(getApplicationContext(), "Data gagal di simpan", Toast.LENGTH_LONG).show();
                                 break;
                         }
                     }
