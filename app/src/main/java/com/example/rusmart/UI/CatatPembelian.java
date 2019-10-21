@@ -155,11 +155,15 @@ public class CatatPembelian extends AppCompatActivity {
                                 progressBar.setCancelable(false);
                                 datesave = new Date();
                                 df2 = new SimpleDateFormat("ddMMyyyyhhmmss");
-                                DateFormat df3 = new SimpleDateFormat("ddMMyyyy");
+                                DateFormat df3 = new SimpleDateFormat("dd");
+                                DateFormat df4 = new SimpleDateFormat("MM");
+                                DateFormat df5 = new SimpleDateFormat("yyyy");
                                 kodenota = "RUSMART" + df2.format(datesave);
                                 AndroidNetworking.post(baseURL.baseurl+"rusmart/insertnota.php")
                                         .addBodyParameter("kodenota",kodenota)
                                         .addBodyParameter("tanggalnota",df3.format(datesave).toString())
+                                        .addBodyParameter("bulannota",df4.format(datesave).toString())
+                                        .addBodyParameter("tahunnota",df5.format(datesave).toString())
                                         .addBodyParameter("totalbayar",totalbayar+"")
                                         .addBodyParameter("jumlahuang","0")
                                         .addBodyParameter("potonganharga","0")
