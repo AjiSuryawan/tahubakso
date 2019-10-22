@@ -13,6 +13,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -73,7 +76,23 @@ public class CatatPembelian extends AppCompatActivity {
     Date datesave;
     DateFormat df2;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.menu, menu);
+        return (super.onCreateOptionsMenu(menu));
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.reload) {
+            if (!progressBar.isShowing()){
+                progressBar.show();
+                loadapi();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -309,6 +328,7 @@ public class CatatPembelian extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            datalist.clear();
                             System.out.println("lala2");
                             Log.d("hasil", "onResponse: "+response.toString());
                             JSONArray result = response.getJSONArray("result");
