@@ -173,6 +173,8 @@ public class CatatPembelian extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 progressBar.show();
                                 progressBar.setCancelable(false);
+                                int tmp= spinnerguru.getSelectedItemPosition();
+                                posisiguru=datalist.get(tmp).getCodeguru();
                                 datesave = new Date();
                                 df2 = new SimpleDateFormat("ddMMyyyyhhmmss");
                                 DateFormat df3 = new SimpleDateFormat("dd");
@@ -269,16 +271,6 @@ public class CatatPembelian extends AppCompatActivity {
         final int year = cal.get(Calendar.YEAR);
         final int month = cal.get(Calendar.MONTH);
         final int day = cal.get(Calendar.DAY_OF_MONTH);
-        spinnerguru.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                posisiguru=datalist.get(i).getCodeguru();
-                Toast.makeText(getApplicationContext(),""+posisiguru,Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -320,13 +312,6 @@ public class CatatPembelian extends AppCompatActivity {
 
     }
     private void loadapi() {
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                RealmResults<GuruModel> result = realm.where(GuruModel.class).findAll();
-                result.deleteAllFromRealm();
-            }
-        });
         AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
                 //.addBodyParameter("kodebarang",result)
                 .setTag("test")
