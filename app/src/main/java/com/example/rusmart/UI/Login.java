@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
                                         editor.putString("password", txtpassword.getText().toString());
                                         editor.apply();
 
-                                        Toast.makeText(getApplicationContext(), "Login sukses", Toast.LENGTH_LONG).show();
+
                                         Intent in = new Intent(Login.this, HomeDashboard.class);
                                         startActivity(in);
                                         finish();
