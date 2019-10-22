@@ -32,7 +32,7 @@ public class RealmHelper {
                         nextId = currentIdNum.intValue() + 1;
                     }
                     guruModel.setIdguru(nextId);
-                    GuruModel model = realm.copyToRealm(guruModel);
+                    GuruModel model = realm.copyToRealmOrUpdate(guruModel);
                 }else{
                     Log.e("ppppp", "execute: Database not Exist");
                 }
