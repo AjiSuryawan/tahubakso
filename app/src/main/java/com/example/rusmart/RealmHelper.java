@@ -70,15 +70,6 @@ public class RealmHelper {
         });
     }
 
-    // untuk menghapus data
-    public void delete(Integer id){
-        final RealmResults<GuruModel> model = realm.where(GuruModel.class).equalTo("idguru", id).findAll();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                model.deleteFromRealm(0);
-            }
-        });
-    }
+
 
 }

@@ -53,6 +53,7 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class CatatPembelian extends AppCompatActivity {
     String kodenota;
@@ -138,7 +139,7 @@ public class CatatPembelian extends AppCompatActivity {
         progressBar.setCancelable(false);
         datalist.clear();
         datalist.addAll(realmHelper.getAllMahasiswa());
-
+        Log.d("jumlahnya ", "onCreate: "+datalist.size());
         if (datalist.size() == 0){
             loadapi();
         }else{
@@ -319,6 +320,13 @@ public class CatatPembelian extends AppCompatActivity {
 
     }
     private void loadapi() {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<GuruModel> result = realm.where(GuruModel.class).findAll();
+                result.deleteAllFromRealm();
+            }
+        });
         AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
                 //.addBodyParameter("kodebarang",result)
                 .setTag("test")
