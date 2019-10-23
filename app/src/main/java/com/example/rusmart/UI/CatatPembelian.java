@@ -192,7 +192,7 @@ public class CatatPembelian extends AppCompatActivity {
                                 DateFormat df4 = new SimpleDateFormat("MM");
                                 DateFormat df5 = new SimpleDateFormat("yyyy");
                                 kodenota = "RUSMART" + df2.format(datesave);
-                                AndroidNetworking.post(baseURL.baseurl+"rusmart/insertnota.php")
+                                AndroidNetworking.post(baseURL.baseurl+"rusmart/api/insertnota.php")
                                         .addBodyParameter("kodenota",kodenota)
                                         .addBodyParameter("tanggalnota",df3.format(datesave).toString())
                                         .addBodyParameter("bulannota",df4.format(datesave).toString())
@@ -217,7 +217,7 @@ public class CatatPembelian extends AppCompatActivity {
                                                         Toast.makeText(getApplicationContext(),"sukses input",Toast.LENGTH_LONG).show();
                                                         //
                                                         for (int j = 0; j <datalistbarang.size() ; j++) {
-                                                            AndroidNetworking.post(baseURL.baseurl+"rusmart/insertnotadetail.php")
+                                                            AndroidNetworking.post(baseURL.baseurl+"rusmart/api/insertnotadetail.php")
                                                                     .addBodyParameter("kodenota", kodenota)
                                                                     .addBodyParameter("kodeBarang", datalistbarang.get(j).getId())
                                                                     .addBodyParameter("jumlah", datalistbarang.get(j).getJumlah()+"")
@@ -323,7 +323,7 @@ public class CatatPembelian extends AppCompatActivity {
 
     }
     private void loadapi() {
-        AndroidNetworking.get(baseURL.baseurl+"rusmart/getguru.php")
+        AndroidNetworking.get(baseURL.baseurl+"rusmart/api/getguru.php")
                 //.addBodyParameter("kodebarang",result)
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
