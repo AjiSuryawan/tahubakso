@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
                     br.close();
                     System.out.println("hasil test splash : " + text);
                     String[] tmparray = text.toString().split(Pattern.quote("#"));
-                    baseURL.baseurl = tmparray[0];
+                    baseURL.baseurl = tmparray[0].trim();
                 } catch (IOException e) {
                     System.out.println("error baca : " + e.toString());
                     //You'll need to add proper error handling here

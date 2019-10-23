@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
             }
             System.out.println("hasil test login : " + text);
             String[] tmparray = text.toString().split(Pattern.quote("#"));
-            baseURL.baseurl = tmparray[0];
+            baseURL.baseurl = tmparray[0].trim();
             System.out.println("hasil : " + tmparray[0]);
         }
     }
@@ -146,6 +146,7 @@ public class Login extends AppCompatActivity {
                 mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
                 System.out.println("test url : "+baseURL.baseurl + "rusmart/api/login.php");
                 AndroidNetworking.post(baseURL.baseurl + "rusmart/api/login.php")
+                //AndroidNetworking.post("http://192.168.6.23/rusmart/api/login.php")
                         .addBodyParameter("username", txtusername.getText().toString())
                         .addBodyParameter("password", txtpassword.getText().toString())
                         .setTag("test")
