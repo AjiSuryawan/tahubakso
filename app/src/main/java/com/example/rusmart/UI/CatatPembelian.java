@@ -76,29 +76,40 @@ public class CatatPembelian extends AppCompatActivity {
     String posisiguru;
     Date datesave;
     DateFormat df2;
+    ImageView reload;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(this).inflate(R.menu.menu, menu);
-        return (super.onCreateOptionsMenu(menu));
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        new MenuInflater(this).inflate(R.menu.menu, menu);
+//        return (super.onCreateOptionsMenu(menu));
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.reload) {
-            if (!progressBar.isShowing()){
-                progressBar.show();
-                loadapi();
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        if (item.getItemId() == R.id.reload) {
+//            if (!progressBar.isShowing()){
+//                progressBar.show();
+//                loadapi();
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catatpembelian);
+        reload = findViewById(R.id.reload);
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!progressBar.isShowing()){
+                     progressBar.show();
+                     loadapi();
+                }
+            }
+        });
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Catat Tagihan");
