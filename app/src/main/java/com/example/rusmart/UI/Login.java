@@ -144,6 +144,7 @@ public class Login extends AppCompatActivity {
                 mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
                 Log.d("makan", "onClick: "+baseURL.baseurl + "rusmart/api/login.php");
                 AndroidNetworking.post(baseURL.baseurl + "rusmart/api/login.php")
+                //AndroidNetworking.post("http://192.168.6.23/rusmart/api/login.php")
                         .addBodyParameter("username", txtusername.getText().toString())
                         .addBodyParameter("password", txtpassword.getText().toString())
                         .setTag("test")
