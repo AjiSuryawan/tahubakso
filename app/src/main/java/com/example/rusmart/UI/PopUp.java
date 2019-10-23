@@ -108,7 +108,7 @@ public class PopUp extends AppCompatActivity {
                 progressBar.setMessage("Please wait");
                 progressBar.show();
                 progressBar.setCancelable(false);
-                AndroidNetworking.post(baseURL.baseurl+"rusmart/getbarang.php")
+                AndroidNetworking.post(baseURL.baseurl+"rusmart/api/getbarang.php")
 
                         .addBodyParameter("kodebarang",result)
                         .setTag("test")
