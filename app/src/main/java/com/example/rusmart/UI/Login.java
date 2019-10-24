@@ -123,8 +123,42 @@ public class Login extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             //do your check here
             isStoragePermissionGranted();
+            System.out.println("masuk if");
         }else{
-            isStoragePermissionGranted();
+            System.out.println("masuk else");
+            root = new File(Environment.getExternalStorageDirectory() + File.separator + "rusapp", "folderku");
+            try {
+                if (!root.exists()) {
+                    root.mkdirs();
+                }
+                gpxfile = new File(root, fileName);
+
+                FileWriter writer = new FileWriter(gpxfile, false);
+                writer.append("http://192.168.6.23/");
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("error tulis : " + e.toString());
+            }
+            //baca
+            File file = new File(root, "rusapi" + ".txt");
+            StringBuilder text = new StringBuilder();
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    text.append(line);
+                    text.append('\n');
+                }
+                br.close();
+                System.out.println("hasil test splash : " + text);
+                String[] tmparray = text.toString().split(Pattern.quote("#"));
+                Toast.makeText(getApplicationContext(),tmparray[0].trim().toString(),Toast.LENGTH_LONG).show();
+                baseURL.baseurl = tmparray[0].trim();
+            } catch (IOException e) {
+                System.out.println("error baca : " + e.toString());
+                //You'll need to add proper error handling here
+            }
         }
 
         final UserModel user = new UserModel();
