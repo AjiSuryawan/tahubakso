@@ -5,7 +5,6 @@ import io.realm.annotations.PrimaryKey;
 
 public class GuruModel extends RealmObject {
 
-
     @PrimaryKey
     private Integer idguru;
     private String codeguru;

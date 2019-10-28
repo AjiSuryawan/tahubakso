@@ -89,11 +89,8 @@ public class Login extends AppCompatActivity {
                                     if (progressBar.isShowing()) {
                                         progressBar.dismiss();
                                     }
-
                                 }
-
-
-                                }
+                            }
 
                             @Override
                             public void onError(ANError anError) {

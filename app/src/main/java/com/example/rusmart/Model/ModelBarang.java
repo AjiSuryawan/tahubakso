@@ -1,9 +1,21 @@
 package com.example.rusmart.Model;
 
-public class ModelBarang {
+import io.realm.RealmObject;
+
+public class ModelBarang extends RealmObject {
+
+    private int id2;
     private String id,namabarang;
     private int jumlah=0;
     private int hargabarang=0;
+
+    public int getId2() {
+        return id2;
+    }
+
+    public void setId2(int id2) {
+        this.id2 = id2;
+    }
 
     public String getId() {
         return id;

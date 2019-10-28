@@ -3,6 +3,8 @@ package com.example.rusmart;
 import android.util.Log;
 
 import com.example.rusmart.Model.GuruModel;
+import com.example.rusmart.Model.ModelBarang;
+import com.example.rusmart.Model.ModelNota;
 
 import java.util.List;
 
@@ -81,4 +83,57 @@ public class RealmHelper {
         });
     }
 
+    public void savenota(final ModelNota savenota){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                if (realm != null){
+                    Log.e("Created", "Database was created");
+                    Number currentIdNum = realm.where(ModelNota.class).max("id");
+                    int nextId;
+                    if (currentIdNum == null){
+                        nextId = 1;
+                    }else {
+                        nextId = currentIdNum.intValue() + 1;
+                    }
+                    savenota.setId(nextId);
+                    ModelNota model = realm.copyToRealm(savenota);
+                }else{
+                    Log.e("ppppp", "execute: Database not Exist");
+                }
+            }
+        });
+    }
+
+    public RealmResults<ModelNota> getAllNota(){
+        RealmResults<ModelNota> results = realm.where(ModelNota.class).findAll();
+        return results;
+    }
+
+    public void savedetail(final ModelBarang detailModel){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                if (realm != null){
+                    Log.e("Created", "Database was created");
+                    Number currentIdNum = realm.where(ModelBarang.class).max("id2");
+                    int nextId;
+                    if (currentIdNum == null){
+                        nextId = 1;
+                    }else {
+                        nextId = currentIdNum.intValue() + 1;
+                    }
+                    detailModel.setId2(nextId);
+                    ModelBarang model = realm.copyToRealm(detailModel);
+                }else{
+                    Log.e("ppppp", "execute: Database not Exist");
+                }
+            }
+        });
+    }
+
+    public RealmResults<ModelBarang> getAllDetail(){
+        RealmResults<ModelBarang> results = realm.where(ModelBarang.class).findAll();
+        return results;
+    }
 }
