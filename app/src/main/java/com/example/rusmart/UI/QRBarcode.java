@@ -44,7 +44,7 @@ public class QRBarcode extends AppCompatActivity implements ZXingScannerView.Res
 
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
-                        Toast.makeText(QRBarcode.this, "You must accept this permission", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override

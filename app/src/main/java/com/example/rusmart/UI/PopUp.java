@@ -82,7 +82,6 @@ public class PopUp extends AppCompatActivity {
 
 
                             case DialogInterface.BUTTON_NEGATIVE:
-                                Toast.makeText(getApplicationContext(), "Data gagal di simpan", Toast.LENGTH_LONG).show();
                                 break;
                         }
                     }
@@ -109,7 +108,7 @@ public class PopUp extends AppCompatActivity {
                 progressBar.setMessage("Please wait");
                 progressBar.show();
                 progressBar.setCancelable(false);
-                AndroidNetworking.post(baseURL.baseurl+"rusmart/getbarang.php")
+                AndroidNetworking.post(baseURL.baseurl+"rusmart/api/getbarang.php")
 
                         .addBodyParameter("kodebarang",result)
                         .setTag("test")
@@ -122,17 +121,24 @@ public class PopUp extends AppCompatActivity {
                                     System.out.println("lala2");
                                     Log.d("hasil", "onResponse: "+response.toString());
                                     JSONArray result = response.getJSONArray("result");
-                                    for (int i = 0; i <result.length() ; i++) {
-                                        ModelBarang model = new ModelBarang();
-                                        JSONObject json = result.getJSONObject(i);
-                                        model.setId(json.getString("kodebarang"));
-                                        model.setNamabarang(json.getString("namabarang"));
-                                        model.setHargabarang(Integer.parseInt(json.getString("hargabarang")));
-                                        datalist.add(model);
-                                    }
-                                    txtnamabarang.setText(datalist.get(0).getNamabarang());
-                                    if (progressBar.isShowing()){
-                                        progressBar.dismiss();
+                                    if(result.length()>0){
+                                        for (int i = 0; i <result.length() ; i++) {
+                                            ModelBarang model = new ModelBarang();
+                                            JSONObject json = result.getJSONObject(i);
+                                            model.setId(json.getString("kodebarang"));
+                                            model.setNamabarang(json.getString("namabarang"));
+                                            model.setHargabarang(Integer.parseInt(json.getString("hargabarang")));
+                                            datalist.add(model);
+                                        }
+                                        txtnamabarang.setText(datalist.get(0).getNamabarang());
+                                        if (progressBar.isShowing()){
+                                            progressBar.dismiss();
+                                        }
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),"data tidak ditemukan",Toast.LENGTH_LONG).show();
+                                        if (progressBar.isShowing()){
+                                            progressBar.dismiss();
+                                        }
                                     }
                                 } catch (JSONException e) {
                                     System.out.println("lala3");

@@ -8,10 +8,68 @@
     android:layout_height="match_parent"
     tools:context=".UI.DeleteOrEdit">
 
-    <androidx.cardview.widget.CardView
-        android:layout_margin="10dp"
-        android:padding="10dp"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbardloredt"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:theme="@style/ActionBarThemeOverlay">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kode Barang  :  "
+            android:layout_gravity="center"
+            android:textSize="17dp"/>
+        <TextView
+            android:id="@+id/tvkodebarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kode Barang"
+            android:layout_gravity="center"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Barang : "
+            android:layout_gravity="center"
+            android:textSize="17dp"/>
+        <TextView
+            android:id="@+id/tvnamabarang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Barang"
+            android:layout_gravity="center"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+
+        android:layout_margin="20dp"
+        android:padding="3dp"
+        android:background="@drawable/edit"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content">
     <EditText
         android:inputType="number"
@@ -19,22 +77,30 @@
         android:id="@+id/txtjumlahedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
     <LinearLayout
         android:layout_gravity="center"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnedit"
             android:text="save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="148dp"
+            android:layout_height="40dp"
+            android:textColor="@color/putih"
+            android:background="@color/colorAccent"/>
         <Button
             android:id="@+id/btndelete"
             android:text="delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/colorAccent"
+            android:layout_marginRight="20dp"
+            android:layout_width="148dp"
+            android:layout_height="40dp"
+            android:background="@drawable/del"/>
     </LinearLayout>
 
 </LinearLayout>

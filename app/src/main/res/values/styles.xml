@@ -9,8 +9,14 @@
     </style>
 
     <style name="ActionBarThemeOverlay" parent="">
-        <item name="android:textColorPrimary">#fff</item>
-        <item name="colorControlNormal">#fff</item>
+    <item name="android:textColorPrimary">#FFFFFF</item>
+    <item name="colorControlNormal">#FFFFFF</item>
+    <item name="colorControlHighlight">#3fff</item>
+</style>
+
+    <style name="ActionBarThemeOverlay.1" parent="">
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="colorControlNormal">#000000</item>
         <item name="colorControlHighlight">#3fff</item>
     </style>
 

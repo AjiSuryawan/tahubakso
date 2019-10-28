@@ -34,7 +34,7 @@ public class RealmHelper {
                         nextId = currentIdNum.intValue() + 1;
                     }
                     guruModel.setIdguru(nextId);
-                    GuruModel model = realm.copyToRealm(guruModel);
+                    GuruModel model = realm.copyToRealmOrUpdate(guruModel);
                 }else{
                     Log.e("ppppp", "execute: Database not Exist");
                 }
@@ -72,16 +72,7 @@ public class RealmHelper {
         });
     }
 
-    // untuk menghapus data
-    public void delete(Integer id){
-        final RealmResults<GuruModel> model = realm.where(GuruModel.class).equalTo("idguru", id).findAll();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                model.deleteFromRealm(0);
-            }
-        });
-    }
+
 
     public void savenota(final ModelNota savenota){
         realm.executeTransaction(new Realm.Transaction() {
