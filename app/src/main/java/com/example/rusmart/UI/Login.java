@@ -123,8 +123,7 @@ public class Login extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             //do your check here
             isStoragePermissionGranted();
-<<<<<<< HEAD
-=======
+
             System.out.println("masuk if");
         }else{
             System.out.println("masuk else");
@@ -161,7 +160,6 @@ public class Login extends AppCompatActivity {
                 System.out.println("error baca : " + e.toString());
                 //You'll need to add proper error handling here
             }
->>>>>>> 9735786b6ded8f39d9ff532aae68581d0deb18ff
         }
 
         final UserModel user = new UserModel();

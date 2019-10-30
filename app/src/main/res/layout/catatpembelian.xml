@@ -6,37 +6,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ededed"
+    tools:context=".UI.CatatPembelian">
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:theme="@style/ActionBarThemeOverlay"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/reload"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/reloadic"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".UI.CatatPembelian">
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:theme="@style/ActionBarThemeOverlay">
-
-            </androidx.appcompat.widget.Toolbar>
+                android:visibility="gone">
 
 
-            <ImageView
-                android:id="@+id/reload"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@mipmap/reloadic"
-                android:layout_gravity="bottom|end"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-40dp"/>
+                <ImageView
+                    android:id="@+id/date"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="17dp"
+                    android:src="@mipmap/calendar" />
 
+                <TextView
+                    android:id="@+id/show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:hint="Tanggal"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:text="Tanggal :"
+                android:textColor="@color/hitam"
+                android:visibility="gone" />
 
 
             <TextView
@@ -69,41 +108,6 @@
             </androidx.cardview.widget.CardView>
 
 
-            <TextView
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="33dp"
-                android:text="Tanggal :"
-                android:textColor="@color/hitam" />
-
-
-            <LinearLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <ImageView
-                    android:id="@+id/date"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="17dp"
-                    android:src="@mipmap/calendar" />
-
-                <TextView
-                    android:id="@+id/show"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:hint="Tanggal"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvdatapembelian"
                 android:layout_width="356dp"
@@ -112,41 +116,47 @@
                 android:layout_marginTop="20dp" />
 
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="30dp"
-                app:srcCompat="@mipmap/plus" />
-
-            <TextView
-                android:id="@+id/txttotalbayar"
-                android:textSize="20sp"
-                android:layout_margin="20dp"
-                android:text="total bayar"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
     </ScrollView>
 
     <Button
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/btnsave"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/buttonsv"
         android:text="SAVE  "
-        android:textColor="@color/putih"/>
+        android:textColor="@color/putih"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/plus" />
+
+    <TextView
+        app:layout_constraintBottom_toTopOf="@+id/btnsave"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/txttotalbayar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+        android:text="total bayar"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

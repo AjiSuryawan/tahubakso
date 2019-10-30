@@ -34,7 +34,7 @@ public class DeleteOrEdit extends AppCompatActivity {
         tvkodebarang = findViewById(R.id.tvkodebarang);
         tvnamabarang = findViewById(R.id.tvnamabarang);
 
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar1);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbardloredt);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Delete or Edit");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -100,6 +100,12 @@ public class CatatPembelian extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catatpembelian);
+
+        Toolbar toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Catat Tagihan");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         reload = findViewById(R.id.reload);
         reload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,10 +116,8 @@ public class CatatPembelian extends AppCompatActivity {
                 }
             }
         });
-        Toolbar toolbar = findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Catat Tagihan");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("Rp. ");
