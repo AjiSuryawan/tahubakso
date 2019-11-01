@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="#ededed"
+    android:id="@+id/cnstrn"
     tools:context=".UI.CatatPembelian">
 
 
@@ -36,6 +37,7 @@
     <ScrollView
         app:layout_constraintTop_toBottomOf="@+id/toolbar1"
         android:layout_width="match_parent"
+        android:id="@+id/scrliew"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -121,42 +123,56 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnsave"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/buttonsv"
-        android:text="SAVE  "
-        android:textColor="@color/putih"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/scrliew"
+        android:layout_marginTop="170dp"
+        >
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/plus" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@mipmap/plus" />
 
-    <TextView
-        app:layout_constraintBottom_toTopOf="@+id/btnsave"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/txttotalbayar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|bottom"
-        android:text="total bayar"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/txttotalbayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center|bottom"
+            android:layout_gravity="center"
+            android:text="total bayar"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnsave"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttonsv"
+            android:text="SAVE  "
+            android:textColor="@color/putih"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
