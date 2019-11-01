@@ -8,53 +8,61 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:theme="@style/ActionBarThemeOverlay"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.Toolbar>
 
-        <LinearLayout
+    <ImageView
+        android:id="@+id/reload"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@mipmap/reloadic"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="55dp"/>
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".UI.CatatPembelian">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:theme="@style/ActionBarThemeOverlay">
-
-            </androidx.appcompat.widget.Toolbar>
-
-
-            <ImageView
-                android:id="@+id/reload"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@mipmap/reloadic"
-                android:layout_gravity="bottom|end"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-40dp"/>
-
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
                 android:text="Pilih nama :"
-                android:textColor="@color/hitam" />
+                android:id="@+id/tvnama"
+                android:textColor="@color/hitam"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="325dp"
                 android:layout_height="37dp"
+                android:id="@+id/cardview"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvnama"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:elevation="10sp"
+                android:layout_marginLeft="15dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:padding="5dp"
                 app:cardCornerRadius="10dp">
@@ -76,13 +84,15 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="33dp"
                 android:text="Tanggal :"
-                android:textColor="@color/hitam" />
+                android:textColor="@color/hitam"
+                tools:ignore="MissingConstraints" />
 
 
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints">
 
 
                 <ImageView
@@ -107,32 +117,42 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvdatapembelian"
                 android:layout_width="356dp"
-                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardview"
+                android:layout_height="270dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"/>
 
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="30dp"
-                app:srcCompat="@mipmap/plus" />
-
-            <TextView
-                android:id="@+id/txttotalbayar"
-                android:textSize="20sp"
-                android:layout_margin="20dp"
-                android:text="total bayar"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        app:srcCompat="@mipmap/plus" />
+
+    <TextView
+        android:gravity="center|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/btnsave"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/txttotalbayar"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:text="total bayar"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
         app:layout_constraintBottom_toBottomOf="parent"
@@ -149,4 +169,3 @@
         android:textColor="@color/putih"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -76,16 +76,17 @@ public class Login extends AppCompatActivity {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.v("weleh", "Permission: " + permissions[0] + "was " + grantResults[0]);
             //resume tasks needing this permission
+
             try {
                 if (!root.exists()) {
                     root.mkdirs();
-                }
-                gpxfile = new File(root, fileName);
+                    gpxfile = new File(root, fileName);
 
-                FileWriter writer = new FileWriter(gpxfile, false);
-                writer.append("http://192.168.6.23/");
-                writer.flush();
-                writer.close();
+                    FileWriter writer = new FileWriter(gpxfile, false);
+                    writer.append("http://192.168.6.60/");
+                    writer.flush();
+                    writer.close();
+                }
             } catch (IOException e) {
                 System.out.println("error tulis : " + e.toString());
             }
@@ -130,13 +131,13 @@ public class Login extends AppCompatActivity {
             try {
                 if (!root.exists()) {
                     root.mkdirs();
-                }
-                gpxfile = new File(root, fileName);
+                    gpxfile = new File(root, fileName);
 
-                FileWriter writer = new FileWriter(gpxfile, false);
-                writer.append("http://192.168.6.23/");
-                writer.flush();
-                writer.close();
+                    FileWriter writer = new FileWriter(gpxfile, false);
+                    writer.append("http://192.168.6.60/");
+                    writer.flush();
+                    writer.close();
+                }
             } catch (IOException e) {
                 System.out.println("error tulis : " + e.toString());
             }
@@ -180,7 +181,6 @@ public class Login extends AppCompatActivity {
                 mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
                 Log.d("makan", "onClick: "+baseURL.baseurl + "rusmart/api/login.php");
                 AndroidNetworking.post(baseURL.baseurl + "rusmart/api/login.php")
-                //AndroidNetworking.post("http://192.168.6.23/rusmart/api/login.php")
                         .addBodyParameter("username", txtusername.getText().toString())
                         .addBodyParameter("password", txtpassword.getText().toString())
                         .setTag("test")
