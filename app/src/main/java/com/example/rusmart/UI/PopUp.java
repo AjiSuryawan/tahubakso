@@ -101,6 +101,7 @@ public class PopUp extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == PopUp.RESULT_OK) {
+                datalist=new ArrayList<>();
                 System.out.println("lala1");
                 String result = data.getStringExtra("text");
                 Log.d("terserah", "onActivityResult: "+result);
