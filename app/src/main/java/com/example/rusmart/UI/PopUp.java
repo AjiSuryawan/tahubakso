@@ -56,6 +56,7 @@ public class PopUp extends AppCompatActivity {
         btnnamabarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                txtnamabarang.setText("");
                 foto="true";
                 Intent i = new Intent(PopUp.this,QRBarcode.class);
                 startActivityForResult(i, 1);
@@ -102,6 +103,7 @@ public class PopUp extends AppCompatActivity {
             if (resultCode == PopUp.RESULT_OK) {
                 System.out.println("lala1");
                 String result = data.getStringExtra("text");
+                Log.d("terserah", "onActivityResult: "+result);
 
                 progressBar = new ProgressDialog(PopUp.this);
 
@@ -162,5 +164,5 @@ public class PopUp extends AppCompatActivity {
             }
         }
 
-    }//onActivityResult
+    }
 }
