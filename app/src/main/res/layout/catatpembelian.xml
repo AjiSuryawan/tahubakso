@@ -6,12 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="#ededed"
-    android:id="@+id/cnstrn"
-    tools:context=".UI.CatatPembelian">
-
-
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
@@ -26,29 +21,78 @@
         android:id="@+id/reload"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginRight="16dp"
         android:src="@mipmap/reloadic"
         app:layout_constraintBottom_toTopOf="@+id/toolbar1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="55dp"/>
 
     <ScrollView
         app:layout_constraintTop_toBottomOf="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:id="@+id/scrliew"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:context=".UI.CatatPembelian">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:text="Pilih nama :"
+                android:id="@+id/tvnama"
+                android:textColor="@color/hitam"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="325dp"
+                android:layout_height="37dp"
+                android:id="@+id/cardview"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvnama"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:elevation="10sp"
+                android:layout_marginLeft="15dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="5dp"
+                app:cardCornerRadius="10dp">
+
+                <Spinner
+                    android:id="@+id/spinnerguru"
+                    android:layout_width="325dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:entries="@array/Nama_Guru"
+                    android:outlineAmbientShadowColor="@color/colorAccent" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:text="Tanggal :"
+                android:textColor="@color/hitam"
+                tools:ignore="MissingConstraints" />
+
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                tools:ignore="MissingConstraints">
 
 
                 <ImageView
@@ -70,109 +114,58 @@
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="33dp"
-                android:text="Tanggal :"
-                android:textColor="@color/hitam"
-                android:visibility="gone" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:text="Pilih nama :"
-                android:textColor="@color/hitam" />
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="325dp"
-                android:layout_height="37dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:clickable="true"
-                android:elevation="10sp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="5dp"
-                app:cardCornerRadius="10dp">
-
-                <Spinner
-                    android:id="@+id/spinnerguru"
-                    android:layout_width="325dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:entries="@array/Nama_Guru"
-                    android:outlineAmbientShadowColor="@color/colorAccent" />
-            </androidx.cardview.widget.CardView>
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvdatapembelian"
                 android:layout_width="356dp"
-                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardview"
+                android:layout_height="270dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"/>
 
-
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="bottom"
+        android:layout_gravity="end"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        app:srcCompat="@mipmap/plus" />
+
+    <TextView
+        android:gravity="center|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/btnsave"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/txttotalbayar"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:text="total bayar"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btnsave"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
         android:layout_alignParentBottom="true"
-        app:layout_constraintTop_toBottomOf="@+id/scrliew"
-        android:layout_marginTop="170dp"
-        >
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/txttotalbayar"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@mipmap/plus" />
-
-        <TextView
-            android:id="@+id/txttotalbayar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center|bottom"
-            android:layout_gravity="center"
-            android:text="total bayar"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnsave"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="MissingConstraints" />
-
-
-        <Button
-            android:id="@+id/btnsave"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/buttonsv"
-            android:text="SAVE  "
-            android:textColor="@color/putih"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-    </LinearLayout>
+        android:background="@color/colorPrimary"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:text="SAVE  "
+        android:textColor="@color/putih"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
