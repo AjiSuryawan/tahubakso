@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.rusmart.Model.ModelBarang;
 import com.example.rusmart.R;
+import com.example.rusmart.RealmHelper;
 import com.example.rusmart.UI.CatatPembelian;
 import com.example.rusmart.UI.DeleteOrEdit;
 import com.example.rusmart.UI.PopUp;
@@ -24,21 +25,43 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 public class ListBarang extends AppCompatActivity {
     private FloatingActionButton fab;
     int totalbayar=0;
-    ArrayList<ModelBarang> datalistbarang;
+    ArrayList<DetailNotaModel> datalistbarang;
     RecyclerView rvdatapembelian;
     private adapter_list_item_barang adapter;
     TextView txttotalbayar;
     DecimalFormat kursIndonesia;
     DecimalFormatSymbols formatRp;
     Button btnsave;
+    Bundle extras;
+    String kodenota;
+    String namapembeli;
+    RealmHelperHeaderNota realmHelper;
+    RealmHelperDetailNota realmHelperdetail;
+    Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_barang);
+
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
+        realmHelper = new RealmHelperHeaderNota(realm);
+        realmHelperdetail = new RealmHelperDetailNota(realm);
+
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            kodenota = extras.getString("kodenota");
+            namapembeli = extras.getString("namapembeli");
+            // and get whatever type user account id is
+        }
+
         kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("Rp. ");
@@ -51,7 +74,21 @@ public class ListBarang extends AppCompatActivity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HeaderNotaModel headerNotaModel = new HeaderNotaModel();
+                headerNotaModel.setCodenota(kodenota);
+                headerNotaModel.setNamacustomer(namapembeli);
+                realmHelper.saveheader(headerNotaModel);
+                for (int i = 0; i <datalistbarang.size() ; i++) {
+                    //save realm2
+                    DetailNotaModel detailNotaModel = new DetailNotaModel();
+                    detailNotaModel.setCodenota(datalistbarang.get(i).getCodenota());
+                    detailNotaModel.setJumlahbarang(datalistbarang.get(i).getJumlahbarang());
+                    detailNotaModel.setHargabarang(datalistbarang.get(i).getHargabarang());
+                    detailNotaModel.setSubtotal(datalistbarang.get(i).getJumlahbarang());
+                    detailNotaModel.setJumlahbarang(datalistbarang.get(i).getJumlahbarang());
+                    realmHelperdetail.savedetail(detailNotaModel);
 
+                }
             }
         });
         rvdatapembelian=findViewById(R.id.rvdatapembelian);
@@ -88,13 +125,13 @@ public class ListBarang extends AppCompatActivity {
             String kodeBarang = data.getStringExtra("kodeBarang");
             String jumlah = data.getStringExtra("jumlah");
             String hargabarang = data.getStringExtra("hargabarang");
-            ModelBarang barang =new ModelBarang();
+            DetailNotaModel barang =new DetailNotaModel();
             totalbayar+=(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang));
             Log.d("bayaran", "onActivityResult: "+totalbayar);
-            barang.setId(kodeBarang);
+            barang.setCodenota(kodeBarang);
             barang.setNamabarang(namaBarang);
-            barang.setJumlah(Integer.parseInt(jumlah));
-            barang.setHargabarang(Integer.parseInt(hargabarang));
+            barang.setJumlahbarang(jumlah);
+            barang.setHargabarang(hargabarang);
             datalistbarang.add(barang);
             rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvdatapembelian.setAdapter(adapter);
