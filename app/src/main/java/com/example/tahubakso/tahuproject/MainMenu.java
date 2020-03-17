@@ -35,19 +35,20 @@ public class MainMenu extends AppCompatActivity {
         btngetorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listheader.addAll(realmHelper.getAllMahasiswa());
-                for (int i = 0; i <listheader.size() ; i++) {
-                    Log.d("kode nota", "hasil: "+listheader.get(i).getCodenota());
-                    Log.d("kode nota", "hasil: "+listheader.get(i).getNamacustomer());
-                }
-                listdetail.addAll(realmHelperdetail.getAllMahasiswa());
-                for (int i = 0; i <listdetail.size() ; i++) {
-                    Log.d("detail", "onClick: "+listdetail.get(i).getCodenota());
-                    Log.d("detail", "onClick: "+listdetail.get(i).getNamabarang());
-                    Log.d("detail", "onClick: "+listdetail.get(i).getJumlahbarang());
-                    Log.d("detail", "onClick: "+listdetail.get(i).getHargabarang());
-                    Log.d("detail", "onClick: "+listdetail.get(i).getSubtotal());
-                }
+                startActivity(new Intent(getApplicationContext(), ViewHeaderNota.class));
+//                listheader.addAll(realmHelper.getAllMahasiswa());
+//                for (int i = 0; i <listheader.size() ; i++) {
+//                    Log.d("kode nota", "hasil: "+listheader.get(i).getCodenota());
+//                    Log.d("kode nota", "hasil: "+listheader.get(i).getNamacustomer());
+//                }
+//                listdetail.addAll(realmHelperdetail.getAllMahasiswa());
+//                for (int i = 0; i <listdetail.size() ; i++) {
+//                    Log.d("detail", "onClick: "+listdetail.get(i).getCodenota());
+//                    Log.d("detail", "onClick: "+listdetail.get(i).getNamabarang());
+//                    Log.d("detail", "onClick: "+listdetail.get(i).getJumlahbarang());
+//                    Log.d("detail", "onClick: "+listdetail.get(i).getHargabarang());
+//                    Log.d("detail", "onClick: "+listdetail.get(i).getSubtotal());
+//                }
             }
         });
         Button btnaddorder = (Button)findViewById(R.id.btnaddorder);

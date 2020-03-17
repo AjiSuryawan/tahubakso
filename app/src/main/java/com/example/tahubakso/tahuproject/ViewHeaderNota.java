@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.tahubakso.R;
+import com.example.tahubakso.adapter.adapter_list_item_barang;
 import com.example.tahubakso.adapter.adapter_list_item_nota;
 
 import java.text.DecimalFormat;
@@ -24,9 +25,6 @@ public class ViewHeaderNota extends AppCompatActivity {
     TextView txttotalbayar;
     DecimalFormat kursIndonesia;
     DecimalFormatSymbols formatRp;
-    Bundle extras;
-    String kodenota;
-    String namapembeli;
     RealmHelperHeaderNota realmHelper;
     RealmHelperDetailNota realmHelperdetail;
     Realm realm;
@@ -49,6 +47,24 @@ public class ViewHeaderNota extends AppCompatActivity {
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         datalistNota=new ArrayList<>();
         txttotalbayar=findViewById(R.id.txttotalbayar);
+
+        rvdatapembelian=findViewById(R.id.rvdatapembelian);
+        adapter = new adapter_list_item_nota(getApplicationContext(), datalistNota, new adapter_list_item_nota.CustgroupListener() {
+            @Override
+            public void onClickListener(int position) {
+//                Intent in =new Intent(getApplicationContext(), DeleteOrEdit.class);
+//                in.putExtra("pos",position);
+//                in.putExtra("namaBarang",datalistbarang.get(position).getNamabarang());
+//                in.putExtra("kodeBarang",datalistbarang.get(position).getId());
+//                in.putExtra("hargabarang",datalistbarang.get(position).getHargabarang());
+//                startActivityForResult(in,101);
+            }
+
+            @Override
+            public void onInfoClickListener(int position) {
+
+            }
+        });
 
         datalistNota.addAll(realmHelper.getAllMahasiswa());
         rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

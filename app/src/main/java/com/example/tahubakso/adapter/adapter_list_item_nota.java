@@ -53,7 +53,9 @@ public class adapter_list_item_nota extends RecyclerView.Adapter<adapter_list_it
             cardku = (CardView) itemView.findViewById(R.id.cardku);
             textview_description_item = (TextView)itemView.findViewById(R.id.textview_description_item);
             textview_cost_item = (TextView)itemView.findViewById(R.id.textview_cost_item);
+            textview_cost_item.setVisibility(View.GONE);
             txtsatuan = (TextView)itemView.findViewById(R.id.txtsatuan);
+            txtsatuan.setVisibility(View.GONE);
             cardku.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
