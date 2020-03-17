@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tahuproject.ListBarang"></activity>
+        <activity android:name=".tahuproject.MainMenu"></activity>
+        <activity android:name=".tahuproject.ListBarang" />
         <activity android:name=".tahuproject.AddHeader" />
         <activity
             android:name=".UI.DeleteOrEdit"

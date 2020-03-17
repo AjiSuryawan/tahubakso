@@ -26,7 +26,7 @@ public class RealmHelperDetailNota {
             public void execute(Realm realm) {
                 if (realm != null){
                     Log.e("Created", "Database was created");
-                    Number currentIdNum = realm.where(GuruModel.class).max("iddata");
+                    Number currentIdNum = realm.where(DetailNotaModel.class).max("iddata");
                     int nextId;
                     if (currentIdNum == null){
                         nextId = 1;
@@ -47,6 +47,14 @@ public class RealmHelperDetailNota {
         RealmResults<DetailNotaModel> results = realm.where(DetailNotaModel.class).findAll();
         return results;
     }
+    // untuk memanggil data byidnota
+    public List<DetailNotaModel> getdetailnotabyid(String kodenota){
+//        RealmResults<DetailNotaModel> results = realm.where(DetailNotaModel.class).findAll();
+        RealmResults<DetailNotaModel> results = realm.where(DetailNotaModel.class).equalTo("codenota",kodenota).findAll();
+        return results;
+    }
+
+
 
     // untuk meng-update data
     public void update(final Integer idguru, final String codeguru, final String nama){
@@ -71,9 +79,6 @@ public class RealmHelperDetailNota {
             }
         });
     }
-
-
-
     public void savenota(final ModelNota savenota){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -95,12 +100,10 @@ public class RealmHelperDetailNota {
             }
         });
     }
-
     public RealmResults<ModelNota> getAllNota(){
         RealmResults<ModelNota> results = realm.where(ModelNota.class).findAll();
         return results;
     }
-
     public void savedetail(final ModelBarang detailModel){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -122,7 +125,6 @@ public class RealmHelperDetailNota {
             }
         });
     }
-
     public RealmResults<ModelBarang> getAllDetail(){
         RealmResults<ModelBarang> results = realm.where(ModelBarang.class).findAll();
         return results;

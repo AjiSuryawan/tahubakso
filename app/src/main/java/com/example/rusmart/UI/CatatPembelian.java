@@ -129,22 +129,22 @@ public class CatatPembelian extends AppCompatActivity {
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
         realm = Realm.getInstance(configuration);
         realmHelper = new RealmHelper(realm);
-        adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang, new adapter_list_item_barang.CustgroupListener() {
-            @Override
-            public void onClickListener(int position) {
-                Intent in =new Intent(getApplicationContext(),DeleteOrEdit.class);
-                in.putExtra("pos",position);
-                in.putExtra("namaBarang",datalistbarang.get(position).getNamabarang());
-                in.putExtra("kodeBarang",datalistbarang.get(position).getId());
-                in.putExtra("hargabarang",datalistbarang.get(position).getHargabarang());
-                startActivityForResult(in,101);
-            }
-
-            @Override
-            public void onInfoClickListener(int position) {
-
-            }
-        });
+//        adapter = new adapter_list_item_barang(getApplicationContext(), datalistbarang, new adapter_list_item_barang.CustgroupListener() {
+//            @Override
+//            public void onClickListener(int position) {
+////                Intent in =new Intent(getApplicationContext(),DeleteOrEdit.class);
+////                in.putExtra("pos",position);
+////                in.putExtra("namaBarang",datalistbarang.get(position).getNamabarang());
+////                in.putExtra("kodeBarang",datalistbarang.get(position).getId());
+////                in.putExtra("hargabarang",datalistbarang.get(position).getHargabarang());
+////                startActivityForResult(in,101);
+//            }
+//
+//            @Override
+//            public void onInfoClickListener(int position) {
+//
+//            }
+//        });
         spinnerguru=findViewById(R.id.spinnerguru);
         txttotalbayar=findViewById(R.id.txttotalbayar);
         rvdatapembelian=findViewById(R.id.rvdatapembelian);

@@ -74,19 +74,24 @@ public class ListBarang extends AppCompatActivity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HeaderNotaModel headerNotaModel = new HeaderNotaModel();
-                headerNotaModel.setCodenota(kodenota);
-                headerNotaModel.setNamacustomer(namapembeli);
-                realmHelper.saveheader(headerNotaModel);
+                Log.d("makananheader", "onClick: "+kodenota+" , "+namapembeli);
+//                HeaderNotaModel headerNotaModel = new HeaderNotaModel();
+//                headerNotaModel.setCodenota(kodenota);
+//                headerNotaModel.setNamacustomer(namapembeli);
+//                realmHelper.saveheader(headerNotaModel);
                 for (int i = 0; i <datalistbarang.size() ; i++) {
                     //save realm2
-                    DetailNotaModel detailNotaModel = new DetailNotaModel();
-                    detailNotaModel.setCodenota(datalistbarang.get(i).getCodenota());
-                    detailNotaModel.setJumlahbarang(datalistbarang.get(i).getJumlahbarang());
-                    detailNotaModel.setHargabarang(datalistbarang.get(i).getHargabarang());
-                    detailNotaModel.setSubtotal(datalistbarang.get(i).getJumlahbarang());
-                    detailNotaModel.setJumlahbarang(datalistbarang.get(i).getJumlahbarang());
-                    realmHelperdetail.savedetail(detailNotaModel);
+//                    DetailNotaModel detailNotaModel = new DetailNotaModel();
+//                    detailNotaModel.setCodenota(datalistbarang.get(i).getCodenota());
+//                    detailNotaModel.setJumlahbarang(datalistbarang.get(i).getJumlahbarang());
+//                    detailNotaModel.setHargabarang(datalistbarang.get(i).getHargabarang());
+//                    detailNotaModel.setSubtotal(datalistbarang.get(i).getJumlahbarang());
+//                    realmHelperdetail.savedetail(detailNotaModel);
+                    Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getCodenota());
+                    Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getNamabarang());
+                    Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getJumlahbarang());
+                    Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getHargabarang());
+                    Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getSubtotal());
 
                 }
             }
@@ -122,16 +127,17 @@ public class ListBarang extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             String namaBarang = data.getStringExtra("namaBarang");
-            String kodeBarang = data.getStringExtra("kodeBarang");
+//            String kodeBarang = data.getStringExtra("kodeBarang");
             String jumlah = data.getStringExtra("jumlah");
             String hargabarang = data.getStringExtra("hargabarang");
             DetailNotaModel barang =new DetailNotaModel();
             totalbayar+=(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang));
             Log.d("bayaran", "onActivityResult: "+totalbayar);
-            barang.setCodenota(kodeBarang);
+            barang.setCodenota(kodenota);
             barang.setNamabarang(namaBarang);
             barang.setJumlahbarang(jumlah);
             barang.setHargabarang(hargabarang);
+            barang.setSubtotal(Integer.parseInt(jumlah)*Integer.parseInt(hargabarang)+"");
             datalistbarang.add(barang);
             rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvdatapembelian.setAdapter(adapter);

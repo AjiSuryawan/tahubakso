@@ -26,7 +26,7 @@ public class RealmHelperHeaderNota {
             public void execute(Realm realm) {
                 if (realm != null){
                     Log.e("Created", "Database was created");
-                    Number currentIdNum = realm.where(GuruModel.class).max("iddata");
+                    Number currentIdNum = realm.where(HeaderNotaModel.class).max("iddata");
                     int nextId;
                     if (currentIdNum == null){
                         nextId = 1;
@@ -71,9 +71,6 @@ public class RealmHelperHeaderNota {
             }
         });
     }
-
-
-
     public void savenota(final ModelNota savenota){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -95,12 +92,10 @@ public class RealmHelperHeaderNota {
             }
         });
     }
-
     public RealmResults<ModelNota> getAllNota(){
         RealmResults<ModelNota> results = realm.where(ModelNota.class).findAll();
         return results;
     }
-
     public void savedetail(final ModelBarang detailModel){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -122,7 +117,6 @@ public class RealmHelperHeaderNota {
             }
         });
     }
-
     public RealmResults<ModelBarang> getAllDetail(){
         RealmResults<ModelBarang> results = realm.where(ModelBarang.class).findAll();
         return results;
