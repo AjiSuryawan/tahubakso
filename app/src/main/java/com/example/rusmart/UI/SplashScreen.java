@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rusmart.Model.ControlLogin;
 import com.example.rusmart.R;
+import com.example.rusmart.tahuproject.AddHeader;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
@@ -50,7 +51,8 @@ public class SplashScreen extends AppCompatActivity {
                     //You'll need to add proper error handling here
                 }
 
-                Intent intent = new Intent(SplashScreen.this, ControlLogin.class);
+//                Intent intent = new Intent(SplashScreen.this, ControlLogin.class);
+                Intent intent = new Intent(SplashScreen.this, AddHeader.class);
                 startActivity(intent);
                 finish();
 

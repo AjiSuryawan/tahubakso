@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tahuproject.AddHeader"></activity>
+        <activity android:name=".tahuproject.ListBarang"></activity>
+        <activity android:name=".tahuproject.AddHeader" />
         <activity
             android:name=".UI.DeleteOrEdit"
             android:parentActivityName=".UI.CatatPembelian" />
@@ -38,6 +39,7 @@
             android:parentActivityName=".UI.HomeDashboard" />
         <activity android:name=".UI.HomeDashboard" />
         <activity android:name=".UI.Login" />
+        <activity android:name=".tahuproject.OrderRecord" />
         <activity android:name=".UI.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
