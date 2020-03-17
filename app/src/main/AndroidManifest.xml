@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rusmart">
+    package="com.example.tahubakso">
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera" />
@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.example.tahubakso.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/bundar"
         android:label="@string/app_name"
@@ -21,28 +21,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tahuproject.ViewHeaderNota"></activity>
-        <activity android:name=".tahuproject.MainMenu" />
-        <activity android:name=".tahuproject.ListBarang" />
-        <activity android:name=".tahuproject.AddHeader" />
+        <activity android:name="com.example.tahubakso.tahuproject.ViewHeaderNota"></activity>
+        <activity android:name="com.example.tahubakso.tahuproject.MainMenu" />
+        <activity android:name="com.example.tahubakso.tahuproject.ListBarang" />
+        <activity android:name="com.example.tahubakso.tahuproject.AddHeader" />
         <activity
-            android:name=".UI.DeleteOrEdit"
-            android:parentActivityName=".UI.CatatPembelian" />
-        <activity android:name=".UI.QRBarcode" />
+            android:name="com.example.tahubakso.UI.DeleteOrEdit"
+            android:parentActivityName="com.example.tahubakso.UI.CatatPembelian" />
+        <activity android:name="com.example.tahubakso.UI.QRBarcode" />
         <activity
-            android:name=".UI.PopUp"
-            android:parentActivityName=".UI.CatatPembelian" />
-        <activity android:name=".Model.ControlLogin" />
+            android:name="com.example.tahubakso.UI.PopUp"
+            android:parentActivityName="com.example.tahubakso.UI.CatatPembelian" />
+        <activity android:name="com.example.tahubakso.Model.ControlLogin" />
         <activity
-            android:name=".UI.LihatLaporan"
-            android:parentActivityName=".UI.HomeDashboard" />
+            android:name="com.example.tahubakso.UI.LihatLaporan"
+            android:parentActivityName="com.example.tahubakso.UI.HomeDashboard" />
         <activity
-            android:name=".UI.CatatPembelian"
-            android:parentActivityName=".UI.HomeDashboard" />
-        <activity android:name=".UI.HomeDashboard" />
-        <activity android:name=".UI.Login" />
-        <activity android:name=".tahuproject.OrderRecord" />
-        <activity android:name=".UI.SplashScreen">
+            android:name="com.example.tahubakso.UI.CatatPembelian"
+            android:parentActivityName="com.example.tahubakso.UI.HomeDashboard" />
+        <activity android:name="com.example.tahubakso.UI.HomeDashboard" />
+        <activity android:name="com.example.tahubakso.UI.Login" />
+        <activity android:name="com.example.tahubakso.tahuproject.OrderRecord" />
+        <activity android:name="com.example.tahubakso.UI.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
