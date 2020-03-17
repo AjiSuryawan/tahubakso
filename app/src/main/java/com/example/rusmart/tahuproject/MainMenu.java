@@ -37,16 +37,15 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 listheader.addAll(realmHelper.getAllMahasiswa());
                 for (int i = 0; i <listheader.size() ; i++) {
-                    Log.d("kode nota", "onClick: "+listheader.get(i).getCodenota());
+                    Log.d("kode nota", "hasil: "+listheader.get(i).getCodenota());
                 }
                 listdetail.addAll(realmHelperdetail.getAllMahasiswa());
                 for (int i = 0; i <listdetail.size() ; i++) {
                     Log.d("detail", "onClick: "+listdetail.get(i).getCodenota());
                     Log.d("detail", "onClick: "+listdetail.get(i).getNamabarang());
                     Log.d("detail", "onClick: "+listdetail.get(i).getJumlahbarang());
-                    Log.d("detail", "onClick: "+listdetail.get(i).getJumlahbarang());
+                    Log.d("detail", "onClick: "+listdetail.get(i).getHargabarang());
                     Log.d("detail", "onClick: "+listdetail.get(i).getSubtotal());
-                    Log.d("detail", "onClick: ===");
                 }
             }
         });
