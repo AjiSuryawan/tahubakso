@@ -30,6 +30,7 @@ public class AddHeader extends AppCompatActivity {
                 in.putExtra("kodenota",txtkodenota.getText().toString());
                 in.putExtra("namapembeli",txtnamapembeli.getText().toString());
                 startActivity(in);
+                finish();
             }
         });
     }

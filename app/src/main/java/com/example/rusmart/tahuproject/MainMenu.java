@@ -38,6 +38,7 @@ public class MainMenu extends AppCompatActivity {
                 listheader.addAll(realmHelper.getAllMahasiswa());
                 for (int i = 0; i <listheader.size() ; i++) {
                     Log.d("kode nota", "hasil: "+listheader.get(i).getCodenota());
+                    Log.d("kode nota", "hasil: "+listheader.get(i).getNamacustomer());
                 }
                 listdetail.addAll(realmHelperdetail.getAllMahasiswa());
                 for (int i = 0; i <listdetail.size() ; i++) {
