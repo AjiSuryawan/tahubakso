@@ -42,6 +42,7 @@
         <activity android:name="com.example.tahubakso.UI.HomeDashboard" />
         <activity android:name="com.example.tahubakso.UI.Login" />
         <activity android:name="com.example.tahubakso.tahuproject.OrderRecord" />
+        <activity android:name="com.example.tahubakso.tahuproject.ViewDetailNota" />
         <activity android:name="com.example.tahubakso.UI.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

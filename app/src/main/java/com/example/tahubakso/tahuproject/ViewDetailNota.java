@@ -1,14 +1,12 @@
 package com.example.tahubakso.tahuproject;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tahubakso.R;
 import com.example.tahubakso.adapter.adapter_list_item_barang;
@@ -21,17 +19,17 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class ViewHeaderNota extends AppCompatActivity {
-    ArrayList<HeaderNotaModel> datalistNota;
+public class ViewDetailNota extends AppCompatActivity {
+    ArrayList<DetailNotaModel> datalistNota;
     RecyclerView rvdatapembelian;
-    private adapter_list_item_nota adapter;
+    private adapter_list_item_barang adapter;
 
     DecimalFormat kursIndonesia;
     DecimalFormatSymbols formatRp;
     RealmHelperHeaderNota realmHelper;
     RealmHelperDetailNota realmHelperdetail;
     Realm realm;
-
+    String kodenota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,12 @@ public class ViewHeaderNota extends AppCompatActivity {
         realmHelper = new RealmHelperHeaderNota(realm);
         realmHelperdetail = new RealmHelperDetailNota(realm);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            kodenota = extras.getString("kodenota");
+            // and get whatever type user account id is
+        }
+
         kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("Rp. ");
@@ -56,14 +60,11 @@ public class ViewHeaderNota extends AppCompatActivity {
 //        txttotalbayar=findViewById(R.id.txttotalbayar);
 
         rvdatapembelian=findViewById(R.id.rvdatapembelian);
-        adapter = new adapter_list_item_nota(getApplicationContext(), datalistNota, new adapter_list_item_nota.CustgroupListener() {
+        adapter = new adapter_list_item_barang(getApplicationContext(), datalistNota, new adapter_list_item_barang.CustgroupListener() {
             @Override
             public void onClickListener(int position) {
-                String kodenota = datalistNota.get(position).getCodenota();
-                Toast.makeText(ViewHeaderNota.this, ""+kodenota, Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(getApplicationContext(),ViewDetailNota.class);
-                in.putExtra("kodenota",kodenota);
-                startActivity(in);
+//                String kodenota = datalistNota.get(position).getCodenota();
+//                Toast.makeText(ViewDetailNota.this, ""+kodenota, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -72,7 +73,7 @@ public class ViewHeaderNota extends AppCompatActivity {
             }
         });
 
-        datalistNota.addAll(realmHelper.getAllMahasiswa());
+        datalistNota.addAll(realmHelperdetail.getdetailnotabyid(kodenota));
         rvdatapembelian.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvdatapembelian.setAdapter(adapter);
         adapter.notifyDataSetChanged();
