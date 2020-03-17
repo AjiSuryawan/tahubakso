@@ -180,63 +180,83 @@ public class Login extends AppCompatActivity {
                 user.setPassword(txtusername.getText().toString());
 
                 mLogin = getSharedPreferences("login", Context.MODE_PRIVATE);
-                Log.d("makan", "onClick: "+baseURL.baseurl + "rusmart/api/login.php");
-                AndroidNetworking.post(baseURL.baseurl + "rusmart/api/login.php")
-                        .addBodyParameter("username", txtusername.getText().toString())
-                        .addBodyParameter("password", txtpassword.getText().toString())
-                        .setTag("test")
-                        .setPriority(Priority.MEDIUM)
-                        .build()
-                        .getAsJSONObject(new JSONObjectRequestListener() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("hasil", "onResponse: " + response);
-                                try {
-                                    JSONObject respon = response.getJSONObject("hasil");
-                                    boolean sukses = respon.getBoolean("respon");
-                                    if (sukses) {
-                                        //simpan share pref, ke main menu
-
-                                        SharedPreferences.Editor editor = mLogin.edit();
-                                        editor.putString("username", txtusername.getText().toString());
-                                        editor.putString("password", txtpassword.getText().toString());
-                                        editor.apply();
+                if (user.getUsername().equalsIgnoreCase("admin")
+                        &&user.getPassword().equalsIgnoreCase("admin")){
+                    SharedPreferences.Editor editor = mLogin.edit();
+                    editor.putString("username", txtusername.getText().toString());
+                    editor.putString("password", txtpassword.getText().toString());
+                    editor.apply();
 
 
-                                        Intent in = new Intent(Login.this, HomeDashboard.class);
-                                        startActivity(in);
-                                        finish();
-                                        if (progressBar.isShowing()) {
-                                            progressBar.dismiss();
-                                        }
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_LONG).show();
-
-
-                                    }
-                                } catch (JSONException e) {
-                                    if (progressBar.isShowing()) {
-                                        progressBar.dismiss();
-                                    }
-
-                                }
-
-
-                            }
-
-                            @Override
-                            public void onError(ANError anError) {
-                                if (progressBar.isShowing()) {
-                                    progressBar.dismiss();
-                                }
-                                System.out.println("lala4");
-                                Log.d("errorku", "onError: " + anError.getErrorCode());
-                                Log.d("errorku", "onError: " + anError.getErrorBody());
-                                Log.d("errorku", "onError: " + anError.getErrorDetail());
-                            }
-
-
-                        });
+                    Intent in = new Intent(Login.this, HomeDashboard.class);
+                    startActivity(in);
+                    finish();
+                    if (progressBar.isShowing()) {
+                        progressBar.dismiss();
+                    }
+                }else{
+                    if (progressBar.isShowing()) {
+                        progressBar.dismiss();
+                    }
+                    Toast.makeText(Login.this, "Login gagal", Toast.LENGTH_SHORT).show();
+                }
+//                Log.d("makan", "onClick: "+baseURL.baseurl + "rusmart/api/login.php");
+//                AndroidNetworking.post(baseURL.baseurl + "rusmart/api/login.php")
+//                        .addBodyParameter("username", txtusername.getText().toString())
+//                        .addBodyParameter("password", txtpassword.getText().toString())
+//                        .setTag("test")
+//                        .setPriority(Priority.MEDIUM)
+//                        .build()
+//                        .getAsJSONObject(new JSONObjectRequestListener() {
+//                            @Override
+//                            public void onResponse(JSONObject response) {
+//                                Log.d("hasil", "onResponse: " + response);
+//                                try {
+//                                    JSONObject respon = response.getJSONObject("hasil");
+//                                    boolean sukses = respon.getBoolean("respon");
+//                                    if (sukses) {
+//                                        //simpan share pref, ke main menu
+//
+//                                        SharedPreferences.Editor editor = mLogin.edit();
+//                                        editor.putString("username", txtusername.getText().toString());
+//                                        editor.putString("password", txtpassword.getText().toString());
+//                                        editor.apply();
+//
+//
+//                                        Intent in = new Intent(Login.this, HomeDashboard.class);
+//                                        startActivity(in);
+//                                        finish();
+//                                        if (progressBar.isShowing()) {
+//                                            progressBar.dismiss();
+//                                        }
+//                                    } else {
+//                                        Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_LONG).show();
+//
+//
+//                                    }
+//                                } catch (JSONException e) {
+//                                    if (progressBar.isShowing()) {
+//                                        progressBar.dismiss();
+//                                    }
+//
+//                                }
+//
+//
+//                            }
+//
+//                            @Override
+//                            public void onError(ANError anError) {
+//                                if (progressBar.isShowing()) {
+//                                    progressBar.dismiss();
+//                                }
+//                                System.out.println("lala4");
+//                                Log.d("errorku", "onError: " + anError.getErrorCode());
+//                                Log.d("errorku", "onError: " + anError.getErrorBody());
+//                                Log.d("errorku", "onError: " + anError.getErrorDetail());
+//                            }
+//
+//
+//                        });
             }
 
         });
