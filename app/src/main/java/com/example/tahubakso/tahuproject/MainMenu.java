@@ -59,5 +59,12 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        Button btndownload = (Button) findViewById(R.id.btndownloadData);
+        btndownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //hit API, trus di responnya save ke db local. lihat catat pembelian line 344
+            }
+        });
     }
 }
