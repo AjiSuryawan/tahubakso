@@ -66,5 +66,13 @@ public class MainMenu extends AppCompatActivity {
                 //hit API, trus di responnya save ke db local. lihat catat pembelian line 344
             }
         });
+
+        Button btnsearchdata = (Button)findViewById(R.id.btnsearchdata);
+        btnsearchdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchData.class));
+            }
+        });
     }
 }
