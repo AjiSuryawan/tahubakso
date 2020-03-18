@@ -16,9 +16,12 @@ import com.example.tahubakso.R;
 import com.example.tahubakso.adapter.adapter_list_item_barang;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -90,6 +93,19 @@ public class ListBarang extends AppCompatActivity {
                     Log.d("makanandetail", "onClick: "+datalistbarang.get(i).getSubtotal());
 
                 }
+                Date date = new Date();
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                //mengurai ke string
+                String header= kodenota+";"+df.format(date)+";"+namapembeli;
+                String datanya="";
+                for (int i = 0; i <datalistbarang.size() ; i++) {
+                    DetailNotaModel data = datalistbarang.get(i);
+                    datanya+=kodenota+";"+data.getNamabarang()+";"+data.getJumlahbarang()+";"+data.getHargabarang()+";"+data.getSubtotal()+"#";
+                }
+                Log.d("header", "onClick: "+header);
+                Log.d("detail nota", "onClick: "+datanya);
+                //yang dikirim header dan datanya pakai FAN
+
                 finish();
             }
         });
