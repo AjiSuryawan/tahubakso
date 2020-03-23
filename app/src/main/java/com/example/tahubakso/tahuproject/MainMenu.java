@@ -8,7 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.tahubakso.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -64,6 +71,36 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //hit API, trus di responnya save ke db local. lihat catat pembelian line 344
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("SessionId", "SesionId_190630");
+                    jsonObject.put("Data", "");
+                    jsonObject.put("Crud", "r");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                AndroidNetworking.post("http://www.ecollectcpu.com:88/api/product/poststaging/")
+                        .addHeaders("Content-Type","application/json")
+                        .addHeaders("Accept","application/json")
+                        .addHeaders("Authorization","Basic V0FZSFlhV0EzZlhTTU83anVJZzJmZz09OlF3NUNNWld4TlQwRUNDRmZhK2g4MmVjSWcvREFEeFM3")
+                        .addJSONObjectBody(jsonObject)
+                        .setTag("test")
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // kalau sukses masukin ke Realm
+                                Log.d("hasiljson", "onResponse: "+response.toString());
+                            }
+                            @Override
+                            public void onError(ANError error) {
+                                // handle error
+                                Log.d("errorku", "onError errorCode : " + error.getErrorCode());
+                                Log.d("errorku", "onError errorBody : " + error.getErrorBody());
+                                Log.d("errorku", "onError errorDetail : " + error.getErrorDetail());
+                            }
+                        });
             }
         });
 
